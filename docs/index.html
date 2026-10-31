@@ -131,7 +131,7 @@
     <div class="head">
       <h1>Vital Care Referral</h1>
       <p>Vital Care of West Chester &middot; complete the steps, then print and fax to (513) 780-5881</p>
-      <div class="build">build v12 &middot; 2026-08-22</div>
+      <div class="build">build v13 &middot; 2026-08-22</div>
     </div>
     <div class="steps" id="steps"></div>
     <div class="body">
@@ -518,6 +518,103 @@
   }
 
   // ---------- pdf ----------
+  // pdf-lib draws text at the field's built-in font size and clips whatever
+  // runs past the edge. Measure first, then shrink — and wrap where the box is
+  // tall enough — so a long practice name or address is never silently cut off.
+  var MIN_SIZE = 5;     // smaller than this smudges when faxed
+  var COMFORT  = 6;     // don't shrink a single line past this before trying to wrap
+  var WRAP_MIN = 5.5;   // smallest size worth wrapping at
+  var SAFETY   = 0.98;  // the PDF's own font may measure a hair wider than Helvetica
+
+  function daSize(field, fallback) {
+    try {
+      var da = field.acroField.getDefaultAppearance() || '';
+      var m = /\/[^\s]+\s+([\d.]+)\s+Tf/.exec(da);
+      if (m) { var n = parseFloat(m[1]); if (n > 0) return n; }
+    } catch (e) {}
+    return fallback;
+  }
+
+  // The usable box, computed the way pdf-lib computes it: the widget rectangle
+  // less its border and 1pt of padding on every side.
+  function textBounds(widget) {
+    var r = widget.getRectangle();
+    var bw = 0;
+    try { var bs = widget.getBorderStyle(); if (bs && bs.getWidth) bw = bs.getWidth() || 0; } catch (e) {}
+    var inset = (bw + 1) * 2;
+    return { w: Math.max(r.width - inset, 6), h: Math.max(r.height - inset, 4) };
+  }
+
+  // pdf-lib stacks lines at heightAtSize(size) * 1.2, which for the standard
+  // fonts is size * 0.925 * 1.2.
+  function lineHeight(size) { return size * 0.925 * 1.2; }
+
+  function wrapLines(text, size, avail, font) {
+    var words = String(text).split(/\s+/), lines = 1, cur = '';
+    for (var i = 0; i < words.length; i++) {
+      if (!words[i]) continue;
+      var trial = cur ? cur + ' ' + words[i] : words[i];
+      if (!cur || font.widthOfTextAtSize(trial, size) <= avail) { cur = trial; }
+      else { lines++; cur = words[i]; }
+    }
+    return lines;
+  }
+
+  // null => already fits. Otherwise {size, multiline, overflow}.
+  // Order of preference: one line at a comfortable size, then wrapped onto
+  // several lines, then one small line. Two readable lines beat one tiny one.
+  function fitText(field, text, font) {
+    var ws;
+    try { ws = field.acroField.getWidgets(); } catch (e) { return null; }
+    if (!ws || !ws.length) return null;
+    var b = textBounds(ws[0]);
+    var size0  = daSize(field, 7);
+    var availW = b.w * SAFETY;
+    var s, n;
+
+    if (font.widthOfTextAtSize(text, size0) <= availW) return null;   // already fits
+
+    // 1. one line, no smaller than comfortable
+    for (s = size0; s >= COMFORT; s -= 0.25) {
+      if (font.widthOfTextAtSize(text, s) <= availW) {
+        return { size: Math.round(s * 4) / 4, multiline: false, overflow: false };
+      }
+    }
+
+    // 2. wrap onto as many lines as the box really holds
+    for (s = size0; s >= WRAP_MIN; s -= 0.25) {
+      n = wrapLines(text, s, availW, font);
+      if (n > 1 && n * lineHeight(s) <= b.h) {
+        return { size: Math.round(s * 4) / 4, multiline: true, overflow: false };
+      }
+    }
+
+    // 3. one line, as small as is still legible
+    for (s = COMFORT; s >= MIN_SIZE; s -= 0.25) {
+      if (font.widthOfTextAtSize(text, s) <= availW) {
+        return { size: Math.round(s * 4) / 4, multiline: false, overflow: false };
+      }
+    }
+
+    // 4. nothing fits — wrap if there is the height for it, else smallest line
+    if (2 * lineHeight(MIN_SIZE) <= b.h) {
+      return { size: MIN_SIZE, multiline: true, overflow: true };
+    }
+    return { size: MIN_SIZE, multiline: false, overflow: true };
+  }
+
+  // Write text into a field, shrinking or wrapping it to fit.
+  // Returns true when even the smallest size still overruns the box.
+  function setFitted(field, text, font) {
+    var fit = fitText(field, text, font);
+    if (fit) {
+      if (fit.multiline) { try { field.enableMultiline(); } catch (e) {} }
+      try { field.setFontSize(fit.size); } catch (e) {}
+    }
+    field.setText(text);
+    return !!(fit && fit.overflow);
+  }
+
   function loadPdf() {
     var url = './pdfs/' + current.file;
     return fetch(url).then(function (r) {
@@ -537,9 +634,10 @@
     var btn = document.getElementById('go');
     btn.disabled = true;
     msg('Generating PDF…', 'info');
-    var filled = 0, problems = [], patient = '';
+    var filled = 0, problems = [], tooLong = [], patient = '';
 
     loadPdf().then(function (doc) {
+     return doc.embedFont(PDFLib.StandardFonts.Helvetica).then(function (font) {
       var form = doc.getForm(), index = {};
       form.getFields().forEach(function (o) { index[o.getName()] = o; });
 
@@ -549,7 +647,7 @@
         try {
           if (f.g === 'Auto') {
             var v = PHARMACY[f.l.toLowerCase().trim()];
-            if (v) { obj.setText(v); filled++; }
+            if (v) { if (setFitted(obj, v, font)) tooLong.push(f.l); filled++; }
             return;
           }
           if (f.k === 'check') {
@@ -561,7 +659,8 @@
           } else {
             var t = valueOf(f);
             if (t) {
-              obj.setText(t); filled++;
+              if (setFitted(obj, t, font)) tooLong.push(f.l);
+              filled++;
               if (/last name|patient name|patient legal name/i.test(f.l)) patient = t.split(/[\s,]+/)[0];
             }
           }
@@ -572,12 +671,15 @@
         try { form.flatten(); } catch (e) { console.warn('flatten failed', e); }
       }
       return doc.save();
+     });
     }).then(function (bytes) {
       saveAs(bytes, current.code + '_referral_' + (patient || 'patient') + '.pdf');
       var h = '<strong>Downloaded.</strong> Print, have the prescriber sign, and fax to (513) 780-5881. Filled ' +
               filled + ' field' + (filled===1?'':'s') + '.';
       if (problems.length) h += '<br><strong>Could not write:</strong> ' + esc(problems.slice(0,8).join(', '));
-      msg(h, problems.length ? 'warn' : 'success');
+      if (tooLong.length) h += '<br><strong>Too long for the box, even at the smallest size:</strong> ' +
+        esc(tooLong.slice(0,8).join(', ')) + ' \u2014 shorten these and download again.';
+      msg(h, (problems.length || tooLong.length) ? 'warn' : 'success');
       btn.disabled = false;
     }).catch(function (err) {
       console.error(err);
