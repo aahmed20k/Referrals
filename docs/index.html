@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Vital Care of West Chester provides home and alternate-site infusion therapy in West Chester and the Greater Cincinnati area." />
+  <meta name="description" content="Home and alternate-site infusion therapy in West Chester and the Greater Cincinnati area. Refer a patient online." />
   <title>Vital Care of West Chester | Infusion Therapy</title>
   <style>
     :root {
@@ -219,6 +219,18 @@
       .info-row strong { text-align: left; }
     }
 
+
+    /* Patient resources */
+    .res-lead { max-width: 640px; }
+    .res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 56px; margin-top: 56px; }
+    .res-group h3 { font-size: 1.05rem; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+    .res-group ul { list-style: none; margin: 0; padding: 0; }
+    .res-group li { margin-bottom: 11px; }
+    .res-group a { color: var(--blue-ink); font-size: .98rem; }
+    .res-group a:hover { text-decoration: underline; }
+    @media (max-width: 900px) { .res-grid { grid-template-columns: 1fr 1fr; gap: 36px 40px; } }
+    @media (max-width: 560px) { .res-grid { grid-template-columns: 1fr; } }
+
     /* ---------------- Online referral ---------------- */
     #online-referral { padding: 112px 0; background: var(--gray); }
     #online-referral h2 { margin-bottom: 18px; }
@@ -237,7 +249,16 @@
 
     @media (max-width: 900px) { #online-referral { padding: 80px 0; } }
 
-    /* ---- referral form (scoped to #vcr) ---- */
+    
+    /* keep the grey/white rhythm from stacking once sections live on their own pages */
+    #online-referral { background: var(--white); }
+    #faq { background: var(--gray); }
+
+    /* current page in the nav */
+    .nav-links a[aria-current="page"] { color: var(--blue-ink); font-weight: 500; }
+    /* a page whose first section is the navy band needs no extra top gap */
+    .page-lead { padding-top: 96px; }
+/* ---- referral form (scoped to #vcr) ---- */
 #vcr .steps{display:flex;gap:2px;background:var(--gray);border-bottom:1px solid var(--line);overflow-x:auto;padding:0 12px}
 #vcr .step{flex:1 0 auto;min-width:104px;background:none;border:none;padding:13px 10px 11px;cursor:pointer;
         font-family:inherit;font-size:12px;font-weight:600;color:var(--muted);text-align:center;
@@ -398,8 +419,8 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
       </button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#patients">Patients</a></li>
-        <li><a href="#providers">Providers</a></li>
+        <li><a href="patients.html">Patients</a></li>
+        <li><a href="providers.html">Providers</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a class="btn btn-primary" href="#online-referral">Refer a patient</a></li>
@@ -409,40 +430,37 @@
 
   <main id="top">
 
-    <!-- Hero -->
-    <section class="hero">
+<section class="hero">
       <div class="wrap">
         <p class="kicker">Home and outpatient infusion · West Chester, Ohio</p>
         <h1>Specialty infusion care, at home.</h1>
         <p class="lead">Infusion therapy for patients across Greater Cincinnati, coordinated by a local pharmacy team that handles the medication, nursing, and insurance.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#online-referral">Refer a patient</a>
-          <a class="link" href="#patients">Starting therapy</a>
+          <a class="link" href="patients.html">Starting therapy</a>
         </div>
       </div>
       <div class="hero-photo">
         <img onerror="this.style.visibility='hidden'" src="https://images.unsplash.com/photo-1765896387387-0538bc9f997e?auto=format&fit=crop&w=2000&q=80" alt="A nurse talking with a patient">
       </div>
     </section>
-
-    <!-- Two doors -->
-    <section class="doors" id="patients">
+<section class="doors" id="patients">
       <div class="wrap">
         <div class="doors-head">
           <h2>Where would you like to start?</h2>
         </div>
         <div class="doors-grid">
-          <a class="door" href="#faq">
+          <a class="door" href="patients.html#faq">
             <div class="door-photo">
               <img onerror="this.style.visibility='hidden'" src="https://images.unsplash.com/photo-1765896387398-1e1ae8d2eb85?auto=format&fit=crop&w=1200&q=80" alt="A caregiver speaking with a patient" loading="lazy">
             </div>
             <div class="door-body">
               <h3>I'm a patient or caregiver</h3>
-              <p>What happens after your referral, how to prepare, and who to call.</p>
+              <p>What happens after your referral, how to prepare, who to call, and the forms and notices you're owed.</p>
               <span class="link">Read the guide</span>
             </div>
           </a>
-          <a class="door door-dark" href="#providers">
+          <a class="door door-dark" href="providers.html">
             <div class="door-photo">
               <img onerror="this.style.visibility='hidden'" src="https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?auto=format&fit=crop&w=1200&q=80" alt="A clinician with a stethoscope" loading="lazy">
             </div>
@@ -455,9 +473,7 @@
         </div>
       </div>
     </section>
-
-    <!-- Services -->
-    <section class="services" id="services">
+<section class="services" id="services">
       <div class="wrap">
         <div class="split-head">
           <h2>Therapies we provide.</h2>
@@ -466,7 +482,8 @@
         <div class="service-list">
           <div class="service">
             <h3>Immunoglobulin (IG)</h3>
-            <p>IVIG and SCIG for immune deficiency and neuromuscular conditions.</p>
+            <p>IVIG and SCIG for CIDP, common variable immunodeficiency, multifocal motor neuropathy,
+               myasthenia gravis, and related conditions.</p>
           </div>
           <div class="service">
             <h3>Anti-infectives</h3>
@@ -478,100 +495,23 @@
           </div>
           <div class="service">
             <h3>Neurology</h3>
-            <p>Specialty infusions for neurological conditions.</p>
+            <p>Infused and injectable treatments for multiple sclerosis, myasthenia gravis, and other
+               neurologic conditions.</p>
           </div>
           <div class="service">
             <h3>Gastroenterology and rheumatology</h3>
-            <p>Biologic infusions prescribed for GI and autoimmune conditions.</p>
+            <p>Biologic infusions for Crohn's, ulcerative colitis, rheumatoid arthritis, and other
+               inflammatory and autoimmune conditions.</p>
           </div>
           <div class="service">
             <h3>Other specialty therapies</h3>
-            <p>Alpha-1 augmentation, dermatology, and other home infusion therapies.</p>
+            <p>Alpha-1 antitrypsin deficiency augmentation, dermatology, and other complex conditions
+               that need close clinical monitoring.</p>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Process -->
-    <section id="process">
-      <div class="wrap">
-        <p class="kicker">How it works</p>
-        <h2>From referral to first infusion.</h2>
-        <div class="steps">
-          <div class="step">
-            <div class="step-n">1</div>
-            <h3>Referral</h3>
-            <p>Your provider sends the order and records. We check that nothing is missing.</p>
-          </div>
-          <div class="step">
-            <div class="step-n">2</div>
-            <h3>Insurance</h3>
-            <p>We verify benefits and handle prior authorization with your plan.</p>
-          </div>
-          <div class="step">
-            <div class="step-n">3</div>
-            <h3>Scheduling</h3>
-            <p>We call you to set the date, setting, and supply delivery.</p>
-          </div>
-          <div class="step">
-            <div class="step-n">4</div>
-            <h3>Treatment</h3>
-            <p>Our team supports you through therapy and updates your provider.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Care settings -->
-    <section class="feature">
-      <div class="wrap feature-grid">
-        <div class="feature-photo">
-          <img onerror="this.style.visibility='hidden'" src="https://images.unsplash.com/photo-1631815590058-860e4f83c1e8?auto=format&fit=crop&w=1200&q=80" alt="A nurse checking a patient's blood pressure" loading="lazy">
-        </div>
-        <div>
-          <p class="kicker">Care settings</p>
-          <h2>Treatment where it works best for you.</h2>
-          <p class="lead">Your prescriber and our team choose the setting together, based on your therapy, health, and coverage.</p>
-          <div class="setting">
-            <h3>At home</h3>
-            <p>A nurse administers therapy in your home when the medication and care plan allow it.</p>
-          </div>
-          <div class="setting">
-            <h3>Alternate site</h3>
-            <p>An outpatient setting with clinical staff on site, for therapies that need closer monitoring.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Providers -->
-    <section class="providers" id="providers">
-      <div class="wrap provider-grid">
-        <div>
-          <p class="kicker">For providers</p>
-          <h2>Refer a patient.</h2>
-          <p class="lead">Submit online, or fax the referral form for the therapy with the order, recent office notes, labs, demographics, and both sides of the insurance card.</p>
-          <div class="provider-actions">
-            <a class="btn btn-white" href="#online-referral">Start a referral</a>
-            <a class="link link-light" href="tel:+15137805880">Call intake</a>
-          </div>
-        </div>
-        <div>
-          <div class="info-list">
-            <div class="info-row"><span>Phone</span><strong><a href="tel:+15137805880">(513) 780-5880</a></strong></div>
-            <div class="info-row"><span>Secure fax</span><strong>(513) 780-5881</strong></div>
-            <div class="info-row"><span>Address</span><strong>8731 Union Centre Blvd.<br>West Chester, OH 45069</strong></div>
-          </div>
-          <div class="requirement">
-            <h3>IG referrals need a wet signature</h3>
-            <p>The prescriber must sign IG referral forms by hand. Stamped and electronic signatures are not accepted.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Online referral -->
-    <section id="online-referral">
+<section id="online-referral">
       <div class="wrap">
         <p class="kicker">Online referral</p>
         <h2>Start a referral.</h2>
@@ -581,7 +521,7 @@
           on your own device and the finished PDF is downloaded straight to it.</p>
 
         <div id="vcr">
-          <p class="vcr-loading">Loading the referral form\u2026</p>
+          <p class="vcr-loading">Loading the referral form…</p>
           <div class="card" hidden>
             <div class="steps" id="steps"></div>
             <div class="body">
@@ -592,55 +532,7 @@
         </div>
       </div>
     </section>
-
-    <!-- FAQ -->
-    <section id="faq">
-      <div class="wrap faq-wrap">
-        <h2>Questions from patients.</h2>
-        <div class="faq">
-          <details>
-            <summary>What happens after my doctor sends a referral?</summary>
-            <div class="answer">
-              <p>We review it, verify your insurance, and call you to schedule. If anything is missing, we get it from your doctor's office directly.</p>
-            </div>
-          </details>
-          <details>
-            <summary>Will I be treated at home or somewhere else?</summary>
-            <div class="answer">
-              <p>It depends on your medication, your health, and your insurance. Your prescriber and our team decide together, and the setting can change later if needed.</p>
-            </div>
-          </details>
-          <details>
-            <summary>How should I prepare for my first infusion?</summary>
-            <div class="answer">
-              <ul>
-                <li>Confirm the date, time, location, and how long it will take.</li>
-                <li>Have your medication and allergy list ready.</li>
-                <li>Ask whether to eat, drink, or take your usual medications beforehand.</li>
-                <li>Wear clothing that gives easy access to your arm or line.</li>
-                <li>Arrange a ride if your care team recommends it.</li>
-              </ul>
-              <p>Always follow the specific instructions from your prescriber or nurse.</p>
-            </div>
-          </details>
-          <details>
-            <summary>Will my insurance cover it?</summary>
-            <div class="answer">
-              <p>We check your benefits and handle prior authorization before treatment starts, and tell you what we know about your cost. Your health plan makes the final coverage decision.</p>
-            </div>
-          </details>
-          <details>
-            <summary>Who do I call with a question during treatment?</summary>
-            <div class="answer">
-              <p>Call us at <a href="tel:+15137805880">(513) 780-5880</a>. For a medical emergency, call 911.</p>
-            </div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="contact" id="contact">
+<section class="contact" id="contact">
       <div class="wrap contact-grid">
         <div>
           <h2>Contact us.</h2>
@@ -649,6 +541,8 @@
             <dd><a href="tel:+15137805880">(513) 780-5880</a></dd>
             <dt>Fax</dt>
             <dd>(513) 780-5881</dd>
+            <dt>Hours</dt>
+            <dd>Monday&ndash;Friday, 8:30am&ndash;4pm<br><span style="font-weight:400;color:var(--muted);font-size:1rem">Closed Saturday and Sunday</span></dd>
             <dt>Address</dt>
             <dd>8731 Union Centre Blvd.<br>West Chester, OH 45069</dd>
           </dl>
@@ -670,10 +564,11 @@
           <svg viewBox="0 0 684 236" role="img" aria-label="Vital Care of West Chester"><use href="#vc-logo" width="684" height="236"/></svg>
         </a>
         <nav class="footer-links" aria-label="Footer">
-          <a href="#patients">Patients</a>
-          <a href="#providers">Providers</a>
+          <a href="patients.html">Patients</a>
+          <a href="providers.html">Providers</a>
           <a href="#services">Services</a>
-          <a href="#faq">FAQ</a>
+          <a href="patients.html#faq">FAQ</a>
+          <a href="patients.html#resources">Resources</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -684,8 +579,22 @@
     </div>
   </footer>
 
+  
   <script>
     (function () {
+
+    // Landing on this page at a #section (e.g. from another page's nav)
+    function jumpToHash() {
+      if (!location.hash || location.hash.length < 2) return;
+      var t;
+      try { t = document.querySelector(location.hash); } catch (e) { return; }
+      if (!t) return;
+      var off = document.querySelector("header").offsetHeight;
+      window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - off });
+    }
+    window.addEventListener("load", jumpToHash);
+    setTimeout(jumpToHash, 400);   // again once any lazy content has appeared
+
     var yr = document.getElementById("year");
     if (yr) yr.textContent = new Date().getFullYear();
 
@@ -720,7 +629,6 @@
     });
     })();
   </script>
-
   <script>
 (function () {
   'use strict';
@@ -1334,7 +1242,6 @@
   };
 })();
 </script>
-
   <script>
   /* Pulls in pdf-lib and the form definitions the first time someone actually
      reaches the referral section, so everyone else never downloads them. */
@@ -1548,7 +1455,6 @@
   document.getElementById('testDataBtn').addEventListener('click', fill);
 })();
 </script>
-<!-- ═══════════ END TEST DATA BUTTON — delete to here ═══════════ -->
-
+<!-- ═══════════ END TEST DATA BUTTON ═══════════ -->
 </body>
 </html>
