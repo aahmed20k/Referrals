@@ -1,147 +1,727 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Vital Care Referral</title>
-<style>
-  :root{
-    --ink:#12303f; --muted:#5b7387; --line:#dbe6ee; --brand:#1f6f96; --brand-dark:#175573;
-    --bg:#eef2f6; --soft:#f5f9fc;
-  }
-  *{box-sizing:border-box}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,sans-serif;
-       background:#eef2f6;min-height:100vh;margin:0;padding:24px 16px 60px;color:#12303f;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:940px;margin:0 auto}
-  .card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(16,43,63,.06),0 12px 32px rgba(16,43,63,.08);overflow:hidden}
-  .head{background:linear-gradient(180deg,#1f6f96,#1a6187);color:#fff;padding:26px 34px}
-  .head h1{margin:0;font-size:21px;font-weight:700;letter-spacing:-.2px}
-  .head p{margin:5px 0 0;font-size:13px;opacity:.88}
-  .build{margin-top:7px;font-size:10.5px;opacity:.55;font-family:ui-monospace,Menlo,Consolas,monospace}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Vital Care of West Chester provides home and alternate-site infusion therapy in West Chester and the Greater Cincinnati area." />
+  <title>Vital Care of West Chester | Infusion Therapy</title>
+  <style>
+    :root {
+      --navy: #002d5d;
+      --blue: #3cb4e5;
+      --blue-ink: #0a7db3;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --line: #e5e5ea;
+      --gray: #f5f5f7;
+      --white: #ffffff;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--white);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { display: block; max-width: 100%; }
+    .hero-photo, .door-photo, .feature-photo { background: linear-gradient(135deg, #002d5d 0%, #0a7db3 100%); }
+    .hero-photo img, .door-photo img, .feature-photo img { color: transparent; font-size: 0; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+    .wrap { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
 
-  /* stepper */
-  .steps{display:flex;gap:2px;background:#f5f9fc;border-bottom:1px solid #dbe6ee;overflow-x:auto;padding:0 12px}
-  .step{flex:1 0 auto;min-width:104px;background:none;border:none;padding:13px 10px 11px;cursor:pointer;
-        font-family:inherit;font-size:12px;font-weight:600;color:#7a8fa0;text-align:center;
+    h1, h2, h3 { margin: 0; color: var(--text); font-weight: 600; letter-spacing: -.025em; line-height: 1.08; }
+    h1 { font-size: clamp(2.6rem, 6vw, 4.5rem); }
+    h2 { font-size: clamp(2rem, 4.2vw, 3rem); }
+    h3 { font-size: 1.3rem; letter-spacing: -.015em; line-height: 1.25; }
+    p { margin: 0; }
+    .kicker { color: var(--blue-ink); font-size: .95rem; font-weight: 600; margin-bottom: 12px; }
+    .lead { color: var(--muted); font-size: clamp(1.1rem, 1.8vw, 1.3rem); line-height: 1.5; }
+    section { padding: 112px 0; }
+
+    /* Links and buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 46px; padding: 0 24px; border-radius: 999px;
+      font-size: .98rem; font-weight: 500; transition: background .2s, color .2s;
+    }
+    .btn-primary { background: var(--blue-ink); color: var(--white); }
+    .btn-primary:hover { background: #086a99; }
+    .btn-white { background: var(--white); color: var(--navy); }
+    .btn-white:hover { background: #e8f6fc; }
+    .link { color: var(--blue-ink); font-weight: 500; white-space: nowrap; }
+    .link:hover { text-decoration: underline; }
+    .link::after { content: " ›"; }
+    .link-light { color: #8fd4f2; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+    }
+    .nav { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { width: 150px; }
+    .logo svg { width: 100%; height: auto; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { font-size: .9rem; color: #333; }
+    .nav-links a:hover { color: var(--blue-ink); }
+    .nav-links .btn { min-height: 38px; padding: 0 18px; font-size: .88rem; color: var(--white); }
+    .menu-btn { display: none; background: none; border: 0; padding: 8px; cursor: pointer; color: var(--text); }
+    .menu-btn svg { width: 24px; height: 24px; }
+
+    /* Hero */
+    .hero { padding: 96px 0 0; text-align: center; }
+    .hero h1 { max-width: 860px; margin: 0 auto 22px; }
+    .hero .lead { max-width: 640px; margin: 0 auto 34px; }
+    .hero-actions { display: flex; justify-content: center; align-items: center; gap: 28px; flex-wrap: wrap; }
+    .hero-photo {
+      margin: 72px auto 0; width: min(calc(100% - 48px), 1280px); aspect-ratio: 16 / 7;
+      border-radius: 28px; overflow: hidden;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Two doors */
+    .doors { padding-top: 112px; }
+    .doors-head { text-align: center; margin-bottom: 56px; }
+    .doors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .door {
+      display: flex; flex-direction: column; border-radius: 28px; overflow: hidden;
+      background: var(--gray); transition: transform .3s ease;
+    }
+    .door:hover { transform: translateY(-4px); }
+    .door-photo { aspect-ratio: 4 / 3; overflow: hidden; }
+    .door-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .door:hover .door-photo img { transform: scale(1.03); }
+    .door-body { padding: 36px 40px 40px; }
+    .door-body h3 { font-size: 1.75rem; margin-bottom: 10px; }
+    .door-body p { color: var(--muted); margin-bottom: 18px; }
+    .door-dark { background: var(--navy); }
+    .door-dark h3 { color: var(--white); }
+    .door-dark p { color: rgba(255,255,255,.75); }
+
+    /* Services */
+    .services { background: var(--gray); }
+    .split-head { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 56px; }
+    .service-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 64px; }
+    .service { padding: 28px 0; border-top: 1px solid #d2d2d7; }
+    .service h3 { margin-bottom: 6px; }
+    .service p { color: var(--muted); font-size: 1rem; }
+
+    /* Process */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 56px; }
+    .step-n { font-size: 3rem; font-weight: 600; color: var(--blue); letter-spacing: -.04em; line-height: 1; margin-bottom: 18px; }
+    .step h3 { margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 1rem; }
+
+    /* Setting feature */
+    .feature { padding-top: 0; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .feature-photo { border-radius: 28px; overflow: hidden; aspect-ratio: 1 / 1; }
+    .feature-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .feature h2 { margin-bottom: 20px; }
+    .feature .lead { margin-bottom: 28px; }
+    .setting { padding: 20px 0; border-top: 1px solid var(--line); }
+    .setting:last-child { border-bottom: 1px solid var(--line); }
+    .setting h3 { font-size: 1.1rem; margin-bottom: 4px; }
+    .setting p { color: var(--muted); font-size: 1rem; }
+
+    /* Provider band */
+    .providers { background: var(--navy); color: var(--white); }
+    .providers h2, .providers h3 { color: var(--white); }
+    .providers .kicker { color: #8fd4f2; }
+    .providers .lead { color: rgba(255,255,255,.75); }
+    .provider-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 72px; align-items: start; }
+    .provider-grid .lead { margin: 20px 0 32px; }
+    .provider-actions { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+    .info-list { border-top: 1px solid rgba(255,255,255,.18); }
+    .info-row { display: flex; justify-content: space-between; gap: 24px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+    .info-row span { color: rgba(255,255,255,.65); }
+    .info-row strong { font-weight: 500; text-align: right; }
+    .info-row a:hover { color: #8fd4f2; }
+    .requirement { margin-top: 28px; padding: 22px 24px; border-radius: 18px; background: rgba(255,255,255,.08); }
+    .requirement h3 { font-size: 1rem; margin-bottom: 6px; }
+    .requirement p { color: rgba(255,255,255,.78); font-size: .97rem; }
+
+    /* Referral slot: intentionally empty */
+    #online-referral { padding: 0; }
+
+    /* FAQ */
+    .faq-wrap { max-width: 820px; margin: 0 auto; }
+    .faq-wrap h2 { text-align: center; margin-bottom: 48px; }
+    .faq details { border-bottom: 1px solid var(--line); }
+    .faq details:first-child { border-top: 1px solid var(--line); }
+    .faq summary {
+      display: flex; justify-content: space-between; align-items: center; gap: 24px;
+      padding: 24px 0; font-size: 1.12rem; font-weight: 500; cursor: pointer; list-style: none;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; font-size: 1.6rem; font-weight: 300; color: var(--muted); transition: transform .25s; }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq .answer { padding: 0 0 26px; color: var(--muted); }
+    .faq .answer p + p, .faq .answer ul + p { margin-top: 12px; }
+    .faq .answer ul { margin: 0; padding-left: 20px; }
+    .faq .answer li { margin-bottom: 6px; }
+    .faq .answer a { color: var(--blue-ink); }
+
+    /* Contact */
+    .contact { background: var(--gray); }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: stretch; }
+    .contact h2 { margin-bottom: 32px; }
+    .contact dl { margin: 0 0 32px; }
+    .contact dt { color: var(--muted); font-size: .9rem; margin-top: 20px; }
+    .contact dd { margin: 4px 0 0; font-size: 1.15rem; font-weight: 500; }
+    .contact dd a:hover { color: var(--blue-ink); }
+    .privacy { color: var(--muted); font-size: .92rem; max-width: 420px; }
+    .map { border-radius: 28px; overflow: hidden; min-height: 400px; background: #e8e8ed; }
+    .map iframe { width: 100%; height: 100%; min-height: 400px; border: 0; display: block; }
+
+    /* Footer */
+    footer { padding: 48px 0 40px; font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+    .footer-top .logo { width: 140px; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 22px; }
+
+    @media (max-width: 900px) {
+      section { padding: 80px 0; }
+      .menu-btn { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 72px; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 0; padding: 8px 24px 24px;
+        background: rgba(255,255,255,.98); border-bottom: 1px solid var(--line);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a:not(.btn) { display: block; padding: 14px 0; font-size: 1.05rem; border-bottom: 1px solid var(--line); }
+      .nav-links .btn { margin-top: 16px; min-height: 46px; width: 100%; }
+      .hero { padding-top: 64px; }
+      .hero-photo { aspect-ratio: 4 / 3; margin-top: 48px; border-radius: 20px; }
+      .doors { padding-top: 80px; }
+      .doors-grid, .split-head, .service-list, .feature-grid, .provider-grid, .contact-grid { grid-template-columns: 1fr; }
+      .split-head { gap: 16px; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .feature-grid, .provider-grid { gap: 48px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(calc(100% - 32px), var(--max)); }
+      .hero-photo { width: calc(100% - 32px); }
+      .steps { grid-template-columns: 1fr; }
+      .door-body { padding: 28px; }
+      .info-row { flex-direction: column; gap: 4px; }
+      .info-row strong { text-align: left; }
+    }
+
+    /* ---------------- Online referral ---------------- */
+    #online-referral { padding: 112px 0; background: var(--gray); }
+    #online-referral h2 { margin-bottom: 18px; }
+    .vcr-lead { max-width: 640px; }
+    .vcr-privacy { margin-top: 14px; max-width: 640px; color: var(--muted); font-size: .95rem; }
+    .vcr-loading { margin-top: 40px; color: var(--muted); }
+
+    #vcr { margin-top: 44px; font-size: 15px; line-height: 1.5; color: var(--text); }
+    #vcr .card {
+      background: var(--white); border: 1px solid var(--line); border-radius: 28px;
+      overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 14px 34px rgba(0,45,93,.07);
+    }
+    #vcr h2, #vcr h3, #vcr h4, #vcr h5 { letter-spacing: normal; line-height: 1.3; font-weight: 700; }
+    #vcr p { margin: 0; }
+
+
+    @media (max-width: 900px) { #online-referral { padding: 80px 0; } }
+
+    /* ---- referral form (scoped to #vcr) ---- */
+#vcr .steps{display:flex;gap:2px;background:var(--gray);border-bottom:1px solid var(--line);overflow-x:auto;padding:0 12px}
+#vcr .step{flex:1 0 auto;min-width:104px;background:none;border:none;padding:13px 10px 11px;cursor:pointer;
+        font-family:inherit;font-size:12px;font-weight:600;color:var(--muted);text-align:center;
         border-bottom:3px solid transparent;white-space:nowrap}
-  .step:hover:not(:disabled){color:#1f6f96}
-  .step:disabled{cursor:default;opacity:.45}
-  .step .num{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;
-             background:#dbe6ee;color:#5b7387;font-size:11px;margin-right:6px;vertical-align:middle}
-  .step.active{color:#1f6f96;border-bottom-color:#1f6f96}
-  .step.active .num{background:#1f6f96;color:#fff}
-  .step.done .num{background:#2f9e5f;color:#fff}
-  .step .cnt{display:block;font-weight:500;font-size:10px;opacity:.7;margin-top:2px}
-
-  .body{padding:28px 34px 30px}
-  .panel{display:none}
-  .panel.on{display:block}
-  .ptitle{font-size:19px;font-weight:700;margin:0 0 4px;letter-spacing:-.2px}
-  .psub{font-size:13.5px;color:#5b7387;margin:0 0 22px;line-height:1.5}
-
-  .sub{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#8199aa;
-       margin:26px 0 12px;padding-bottom:6px;border-bottom:1px solid #eaf1f6}
-  .sub:first-of-type{margin-top:0}
-
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:14px}
-  .fg{display:flex;flex-direction:column;min-width:0}
-  .fg.wide{grid-column:1/-1}
-  .fg label{font-weight:600;font-size:12px;margin-bottom:5px;color:#415a6d;line-height:1.3}
-  input[type=text],select,textarea{padding:9px 11px;border:1px solid #cfdce6;border-radius:6px;
-       font-family:inherit;font-size:14px;color:#12303f;background:#fff;width:100%;transition:border-color .12s,box-shadow .12s}
-  input[type=text]:focus,select:focus,textarea:focus{outline:none;border-color:#1f6f96;box-shadow:0 0 0 3px rgba(31,111,150,.13)}
-  input.filled,select.filled{background:#fbfdfe;border-color:#a9cbdd}
-  textarea{resize:vertical;min-height:70px}
-
-  .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1px;
-          border:1px solid #e3ecf2;border-radius:8px;padding:5px;background:#fcfeff}
-  .crow{display:flex;align-items:flex-start;gap:9px;padding:7px 9px;font-size:12.5px;border-radius:5px;line-height:1.4}
-  .crow:hover{background:#f2f8fb}
-  .crow input{margin:2px 0 0;flex:none;accent-color:#1f6f96;width:15px;height:15px}
-  .crow label{cursor:pointer;flex:1;color:#33506a}
-
-  .alert{padding:12px 15px;border-radius:7px;margin-bottom:18px;font-size:13.5px;border-left:3px solid;line-height:1.55}
-  .alert-info{background:#eef6fb;color:#1a6187;border-left-color:#1f6f96}
-  .alert-success{background:#eaf7ef;color:#1c6f3f;border-left-color:#2f9e5f}
-  .alert-error{background:#fdeeed;color:#a5342b;border-left-color:#c0392b}
-  .alert-warn{background:#fef7e8;color:#8a6216;border-left-color:#d9a327}
-
-  .nav{display:flex;gap:10px;align-items:center;margin-top:30px;padding-top:20px;border-top:1px solid #eaf1f6}
-  .nav .spacer{flex:1}
-  button.btn{padding:10px 22px;border-radius:6px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit;border:1px solid transparent}
-  .primary{background:#1f6f96;color:#fff}
-  .primary:hover:not(:disabled){background:#175573}
-  .primary:disabled{opacity:.5;cursor:not-allowed}
-  .ghost{background:#fff;color:#415a6d;border-color:#cfdce6}
-  .ghost:hover{background:#f4f9fc}
-  .link{background:none;border:none;color:#7a8fa0;font-size:12.5px;cursor:pointer;font-family:inherit;text-decoration:underline;padding:6px}
-  .link:hover{color:#c0392b}
-
-  /* referral type picker */
-  .types{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:10px}
-  .tcard{text-align:left;padding:15px 16px;border:1px solid #d6e3ec;border-radius:9px;background:#fff;cursor:pointer;font-family:inherit;transition:all .13s}
-  .tcard:hover{border-color:#1f6f96;box-shadow:0 3px 10px rgba(31,111,150,.11);transform:translateY(-1px)}
-  .tcard.sel{border-color:#1f6f96;background:#f2f9fd;box-shadow:inset 0 0 0 1px #1f6f96}
-  .tcard b{display:block;font-size:14px;color:#12303f;margin-bottom:3px}
-  .tcard span{font-size:11.5px;color:#7a8fa0}
-
-  /* review */
-  .rev{border:1px solid #e3ecf2;border-radius:9px;overflow:hidden;margin-bottom:14px}
-  .rev h4{margin:0;padding:10px 15px;background:#f5f9fc;font-size:11.5px;font-weight:700;
-          text-transform:uppercase;letter-spacing:.6px;color:#5b7387;border-bottom:1px solid #e3ecf2}
-  .rev dl{margin:0;padding:6px 15px 12px;display:grid;grid-template-columns:auto 1fr;gap:3px 16px;font-size:13px}
-  .rev dt{color:#7a8fa0;padding:4px 0}
-  .rev dd{margin:0;padding:4px 0;color:#12303f;font-weight:500;word-break:break-word}
-  .rev .none{padding:12px 15px;font-size:13px;color:#9aabb8}
-  .toolbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
-  .toolbar input[type=text]{max-width:280px}
-  .chk{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:#415a6d;cursor:pointer}
-  .chk input{accent-color:#1f6f96;width:15px;height:15px}
-  .hidden{display:none !important}
-
-  /* medication table rows */
-  .med{border:1px solid #e0eaf1;border-radius:9px;margin-bottom:12px;overflow:hidden;background:#fff}
-  .med>h5{margin:0;padding:10px 15px;background:#f4f9fc;border-bottom:1px solid #e8f0f5;
-          font-size:13.5px;font-weight:700;color:#1a4a63}
-  .med>h5 em{font-style:normal;font-weight:500;color:#7f96a6;font-size:12px;margin-left:6px}
-  .medbody{padding:12px 15px}
-  .colgrp{margin-bottom:14px}
-  .colgrp:last-child{margin-bottom:0}
-  .colgrp>span.ch{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;
-                  letter-spacing:.6px;color:#93a8b6;margin-bottom:7px}
-  .opt{display:flex;align-items:flex-start;gap:9px;padding:5px 6px;border-radius:5px;font-size:13px;line-height:1.45}
-  .opt:hover{background:#f5fafd}
-  .opt input{margin:2px 0 0;flex:none;accent-color:#1f6f96;width:15px;height:15px}
-  .opt label{cursor:pointer;flex:1;color:#33506a}
-  .fill{font-size:13.5px;line-height:2.3;color:#33506a;padding:4px 6px}
-  .fill input{display:inline-block;width:88px;padding:4px 8px;margin:0 3px;font-size:13px;
-              border:1px solid #cfdce6;border-radius:5px;vertical-align:baseline}
-  .fill input:focus{border-color:#1f6f96;box-shadow:0 0 0 3px rgba(31,111,150,.13);outline:none}
-  .empty{color:#9aabb8;font-size:13.5px;padding:14px 0}
-  @media(max-width:640px){
-    body{padding:12px 8px 40px}
-    .head,.body{padding-left:20px;padding-right:20px}
-    .nav{flex-wrap:wrap}
-  }
-</style>
+#vcr .step:hover:not(:disabled){color:var(--blue-ink)}
+#vcr .step:disabled{cursor:default;opacity:.45}
+#vcr .step .num{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;
+             background:var(--line);color:var(--muted);font-size:11px;margin-right:6px;vertical-align:middle}
+#vcr .step.active{color:var(--blue-ink);border-bottom-color:var(--blue-ink)}
+#vcr .step.active .num{background:var(--blue-ink);color:#fff}
+#vcr .step.done .num{background:#2f9e5f;color:#fff}
+#vcr .step .cnt{display:block;font-weight:500;font-size:10px;opacity:.7;margin-top:2px}
+#vcr .body{padding:28px 34px 30px}
+#vcr .panel{display:none}
+#vcr .panel.on{display:block}
+#vcr .ptitle{font-size:19px;font-weight:700;margin:0 0 4px;letter-spacing:-.2px}
+#vcr .psub{font-size:13.5px;color:var(--muted);margin:0 0 22px;line-height:1.5}
+#vcr .sub{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);
+       margin:26px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+#vcr .sub:first-of-type{margin-top:0}
+#vcr .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:14px}
+#vcr .fg{display:flex;flex-direction:column;min-width:0}
+#vcr .fg.wide{grid-column:1/-1}
+#vcr .fg label{font-weight:600;font-size:12px;margin-bottom:5px;color:var(--muted);line-height:1.3}
+#vcr input[type=text], #vcr select, #vcr textarea{padding:9px 11px;border:1px solid var(--line);border-radius:6px;
+       font-family:inherit;font-size:14px;color:var(--text);background:#fff;width:100%;transition:border-color .12s,box-shadow .12s}
+#vcr input[type=text]:focus, #vcr select:focus, #vcr textarea:focus{outline:none;border-color:var(--blue-ink);box-shadow:0 0 0 3px rgba(31,111,150,.13)}
+#vcr input.filled, #vcr select.filled{background:#fbfdff;border-color:#9fcbe2}
+#vcr textarea{resize:vertical;min-height:70px}
+#vcr .checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1px;
+          border:1px solid var(--line);border-radius:8px;padding:5px;background:#fff}
+#vcr .crow{display:flex;align-items:flex-start;gap:9px;padding:7px 9px;font-size:12.5px;border-radius:5px;line-height:1.4}
+#vcr .crow:hover{background:var(--gray)}
+#vcr .crow input{margin:2px 0 0;flex:none;accent-color:var(--blue-ink);width:15px;height:15px}
+#vcr .crow label{cursor:pointer;flex:1;color:var(--text)}
+#vcr .alert{padding:12px 15px;border-radius:7px;margin-bottom:18px;font-size:13.5px;border-left:3px solid;line-height:1.55}
+#vcr .alert-info{background:#eaf6fc;color:var(--navy);border-left-color:var(--blue-ink)}
+#vcr .alert-success{background:#eaf7ef;color:#1c6f3f;border-left-color:#2f9e5f}
+#vcr .alert-error{background:#fdeeed;color:#a5342b;border-left-color:#c0392b}
+#vcr .alert-warn{background:#fef7e8;color:#8a6216;border-left-color:#d9a327}
+#vcr .nav{display:flex;gap:10px;align-items:center;margin-top:30px;padding-top:20px;border-top:1px solid var(--line)}
+#vcr .nav .spacer{flex:1}
+#vcr button.btn{padding:10px 22px;border-radius:6px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit;border:1px solid transparent}
+#vcr .primary{background:var(--blue-ink);color:#fff}
+#vcr .primary:hover:not(:disabled){background:#086a99}
+#vcr .primary:disabled{opacity:.5;cursor:not-allowed}
+#vcr .ghost{background:#fff;color:var(--muted);border-color:var(--line)}
+#vcr .ghost:hover{background:var(--gray)}
+#vcr .link{background:none;border:none;color:var(--muted);font-size:12.5px;cursor:pointer;font-family:inherit;text-decoration:underline;padding:6px}
+#vcr .link:hover{color:#c0392b}
+#vcr .types{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:10px}
+#vcr .tcard{text-align:left;padding:15px 16px;border:1px solid var(--line);border-radius:9px;background:#fff;cursor:pointer;font-family:inherit;transition:all .13s}
+#vcr .tcard:hover{border-color:var(--blue-ink);box-shadow:0 3px 10px rgba(31,111,150,.11);transform:translateY(-1px)}
+#vcr .tcard.sel{border-color:var(--blue-ink);background:#eaf6fc;box-shadow:inset 0 0 0 1px var(--blue-ink)}
+#vcr .tcard b{display:block;font-size:14px;color:var(--text);margin-bottom:3px}
+#vcr .tcard span{font-size:11.5px;color:var(--muted)}
+#vcr .rev{border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-bottom:14px}
+#vcr .rev h4{margin:0;padding:10px 15px;background:var(--gray);font-size:11.5px;font-weight:700;
+          text-transform:uppercase;letter-spacing:.6px;color:var(--muted);border-bottom:1px solid var(--line)}
+#vcr .rev dl{margin:0;padding:6px 15px 12px;display:grid;grid-template-columns:auto 1fr;gap:3px 16px;font-size:13px}
+#vcr .rev dt{color:var(--muted);padding:4px 0}
+#vcr .rev dd{margin:0;padding:4px 0;color:var(--text);font-weight:500;word-break:break-word}
+#vcr .rev .none{padding:12px 15px;font-size:13px;color:var(--muted)}
+#vcr .toolbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+#vcr .toolbar input[type=text]{max-width:280px}
+#vcr .chk{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);cursor:pointer}
+#vcr .chk input{accent-color:var(--blue-ink);width:15px;height:15px}
+#vcr .hidden{display:none !important}
+#vcr .med{border:1px solid var(--line);border-radius:9px;margin-bottom:12px;overflow:hidden;background:#fff}
+#vcr .med>h5{margin:0;padding:10px 15px;background:var(--gray);border-bottom:1px solid var(--line);
+          font-size:13.5px;font-weight:700;color:var(--navy)}
+#vcr .med>h5 em{font-style:normal;font-weight:500;color:var(--muted);font-size:12px;margin-left:6px}
+#vcr .medbody{padding:12px 15px}
+#vcr .colgrp{margin-bottom:14px}
+#vcr .colgrp:last-child{margin-bottom:0}
+#vcr .colgrp>span.ch{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;
+                  letter-spacing:.6px;color:var(--muted);margin-bottom:7px}
+#vcr .opt{display:flex;align-items:flex-start;gap:9px;padding:5px 6px;border-radius:5px;font-size:13px;line-height:1.45}
+#vcr .opt:hover{background:var(--gray)}
+#vcr .opt input{margin:2px 0 0;flex:none;accent-color:var(--blue-ink);width:15px;height:15px}
+#vcr .opt label{cursor:pointer;flex:1;color:var(--text)}
+#vcr .fill{font-size:13.5px;line-height:2.3;color:var(--text);padding:4px 6px}
+#vcr .fill input{display:inline-block;width:88px;padding:4px 8px;margin:0 3px;font-size:13px;
+              border:1px solid var(--line);border-radius:5px;vertical-align:baseline}
+#vcr .fill input:focus{border-color:var(--blue-ink);box-shadow:0 0 0 3px rgba(31,111,150,.13);outline:none}
+#vcr .empty{color:var(--muted);font-size:13.5px;padding:14px 0}
+@media(max-width:640px){#vcr .body{padding-left:20px;padding-right:20px}
+#vcr .nav{flex-wrap:wrap}}
+#testDataBar{position:fixed;right:16px;bottom:16px;z-index:9999;display:flex;gap:8px;align-items:center}
+#testDataBar button{padding:9px 16px;border-radius:6px;border:1px solid #d9a327;background:#fdf6e6;
+    color:#7a5410;font-weight:700;font-size:12.5px;cursor:pointer;font-family:inherit;
+    box-shadow:0 3px 10px rgba(16,43,63,.14)}
+#testDataBar button:hover{background:#f8ecd0}
+#testDataBar .tag{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+    color:#a07a1c;background:#fdf6e6;border:1px solid #ecd9a8;border-radius:4px;padding:4px 7px}
+    /* ---- overrides, last so they win ---- */
+    /* The site and the referral form share a few class names (.steps, .nav,
+       .link, .btn). These keep the site's versions from reaching inside. */
+    #vcr .steps { margin-top: 0; }
+    #vcr .nav   { height: auto; justify-content: flex-start; }
+    #vcr .link  { white-space: normal; }
+    #vcr .link::after { content: none; }
+    /* buttons take the site's pill shape */
+    #vcr button.btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px; padding: 0 22px; border-radius: 999px;
+      font-weight: 500; font-size: .95rem;
+    }
+    #vcr button.ghost { background: var(--white); color: var(--text); border: 1px solid var(--line); }
+    #vcr button.ghost:hover { background: var(--gray); }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="card">
-    <div class="head">
-      <h1>Vital Care Referral</h1>
-      <p>Vital Care of West Chester &middot; complete the steps, then print and fax to (513) 780-5881</p>
-      <div class="build">build v13 &middot; 2026-08-22</div>
+
+  <!-- Vital Care of West Chester logo (official SVG), defined once and reused -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="vc-logo" viewBox="58 72 684 236">
+        <g>
+          <path fill="#3cb4e5" d="M169.0934,105.6958h-1.7759c-5.3681,0-8.7034,3.383-8.7034,8.8282v65.6204c0,5.447,3.3353,8.8318,8.7034,8.8318h1.7759c5.3644,0,8.6997-3.3849,8.6997-8.8318V114.524c0-5.4451-3.3353-8.8282-8.6997-8.8282Z"/>
+          <path fill="#3cb4e5" d="M234.7652,173.8224c-9.6354,0-14.5301-3.128-14.5301-20.2284v-32.0434h14.6659c5.4488,0,8.8318-3.0638,8.8318-7.9952,0-4.9223-3.3023-7.8595-8.8318-7.8595h-14.6659v-8.2704c0-5.0984-2.7996-8.2668-7.3054-8.2668-.8256,0-1.7135,.1082-2.6162,.3137l-1.93,.4146c-4.9094,1.0145-7.6136,4.3334-7.6136,9.3474v6.4615h-3.8233c-4.8324,0-7.7164,2.9372-7.7164,7.8595,0,4.9314,3.383,7.9952,8.8282,7.9952h2.7116v33.8523c0,24.3141,9.4593,34.6889,31.6287,34.6889v-.0037c1.3026,0,2.7483-.0165,4.2086-.1449,2.6859-.2532,4.7039-1.1852,6.0029-2.7703,1.2916-1.5778,1.8053-3.7279,1.5264-6.3845-.2679-2.6015-1.842-6.966-9.3712-6.966Z"/>
+          <path fill="#3cb4e5" d="M324.1549,105.6958h-1.6695c-5.4488,0-8.8318,3.383-8.8318,8.8282v1.6548c-5.7864-7.5439-15.33-12.013-26.3414-12.013-26.4625,0-38.3067,21.6815-38.3067,43.1684,0,30.0161,19.3075,43.451,38.4425,43.451,10.7985,0,20.4266-4.5223,26.2056-11.9378v1.1613c0,5.4451,3.383,8.8282,8.8318,8.8282h1.6695c5.4451,0,8.8282-3.383,8.8282-8.8282V114.524c0-5.4451-3.383-8.8282-8.8282-8.8282Zm-10.083,41.6384c0,16.0033-8.9236,26.345-22.7309,26.345-14.1889,0-23.006-10.094-23.006-26.345,0-16.1648,8.7107-26.2056,22.7309-26.2056,13.9761,0,23.006,10.2867,23.006,26.2056Z"/>
+          <rect fill="#3cb4e5" x="351.7401" y="79.8351" width="19.4689" height="109.1411" rx="8.8318" ry="8.8318"/>
+          <path fill="#002d5d" d="M433.1016,121.1286c8.0796,0,13.9908,2.7886,18.0489,8.4943,2.418,3.5591,5.1112,5.2158,8.4722,5.2158,.7559,0,1.5521-.0881,2.4364-.2789l1.009-.2568c2.7813-.5375,4.8507-1.952,5.8231-3.9848,.6935-1.4512,1.1448-3.882-.6238-7.2174-6.6523-12.5653-18.7167-18.935-35.863-18.935-23.8867,0-41.2238,18.1553-41.2238,43.1684s17.3371,43.1721,41.2238,43.1721c16.9812,0,29.4345-6.7972,36.0318-19.6946,1.398-2.8987,.9283-5.047,.2825-6.3386-.7338-1.4787-2.4804-3.416-6.5239-4.2214l-.6825-.1669c-.7669-.1376-1.486-.2036-2.1685-.2036-4.4508,0-6.9642,2.9501-8.4245,5.1021-4.1572,5.5864-10.1527,8.4172-17.8178,8.4172-13.5138,0-22.5914-10.4756-22.5914-26.0662,0-15.6749,9.0777-26.2056,22.5914-26.2056Z"/>
+          <path fill="#002d5d" d="M556.6921,105.6958h-1.6695c-5.4451,0-8.8282,3.383-8.8282,8.8282v1.6585c-5.79-7.5476-15.3337-12.0167-26.345-12.0167-26.4588,0-38.3031,21.6815-38.3031,43.1684,0,30.0161,19.3075,43.451,38.4425,43.451,10.7949,0,20.4266-4.5242,26.2056-11.9397v1.1631c0,5.4451,3.383,8.8282,8.8282,8.8282h1.6695c5.4488,0,8.8318-3.383,8.8318-8.8282V114.524c0-5.4451-3.383-8.8282-8.8318-8.8282Zm-10.0794,41.6384c0,16.0033-8.9236,26.345-22.7309,26.345-14.1926,0-23.0097-10.094-23.0097-26.345,0-16.1648,8.7107-26.2056,22.7309-26.2056,13.9761,0,23.0097,10.2867,23.0097,26.2056Z"/>
+          <path fill="#002d5d" d="M622.3016,104.7198c-7.8081,0-14.4127,3.1904-18.7167,8.8043-.2862-4.9204-3.5335-7.832-8.8098-7.832h-1.6695c-5.4451,0-8.8282,3.3849-8.8282,8.8318v65.6204c0,5.447,3.383,8.8318,8.8282,8.8318h1.6695c5.4488,0,8.8318-3.3849,8.8318-8.8318v-32.3919c0-16.0364,5.8818-24.2921,17.4435-24.5398,5.8304,0,9.0336-2.6308,9.5106-7.7622l.1394-1.1118c.3559-2.8216-.2752-5.2397-1.8199-6.988-1.5154-1.7209-3.794-2.6308-6.5789-2.6308Z"/>
+          <path fill="#002d5d" d="M713.7607,150.8126c1.5044-1.5502,2.2566-3.7811,2.1795-6.4762-1.0384-24.4022-17.0032-40.1707-40.6697-40.1707-24.7636,0-42.0567,17.7517-42.0567,43.1684,0,25.8222,17.183,43.1721,42.7538,43.1721,15.697,0,27.3541-5.4708,34.6448-16.2583,1.6658-2.4584,2.1502-4.6636,1.4347-6.5496-.7338-1.9392-2.6565-3.3206-5.735-4.1114l-1.6695-.4183c-.7669-.1926-1.5154-.2899-2.2236-.2899-3.1555,0-5.247,1.8438-7.4559,3.794l-.921,.8072c-4.9535,4.4031-10.1087,6.1992-17.7994,6.1992-13.8733,0-22.3713-7.4155-23.5784-20.4339h54.444c2.807,0,5.1076-.8421,6.6523-2.4327Zm-16.5666-13.5578h-43.8986c2.2309-10.96,10.0573-16.9592,22.2539-16.9592,11.925,0,19.8799,6.2946,21.6448,16.9592Z"/>
+          <path fill="#3cb4e5" d="M144.479,108.4588c-1.2769-1.9612-3.6546-3.0399-6.689-3.0399h-2.6418c-4.6562,0-7.9512,2.2089-9.7932,6.5661l-21.1578,51.7651-21.0446-51.4881c-1.842-4.3572-5.1369-6.5661-9.7932-6.5661h-2.6418c-3.0345,0-5.4121,1.0787-6.689,3.0399-1.3136,2.0126-1.3246,4.7333-.0367,7.6503l14.9184,34.2125,12.93,31.7858c1.5014,3.5543,4.0203,5.6439,7.509,6.2583,1.0671,.3106,2.229,.473,3.485,.473h4.0325c4.6966,0,7.9879-2.163,9.8005-6.4542l15.5392-38.1999-.0319-.0506,12.3411-28.302c1.2879-2.917,1.2769-5.6378-.0367-7.6504Z"/>
+          <path fill="#3cb4e5" d="M158.6141,89.1593c0-5.4954,4.0208-8.4843,9.5888-8.4843,5.0897,0,9.5902,2.9889,9.5902,8.4843,0,5.5324-4.5005,8.4829-9.5902,8.4829-5.568,0-9.5888-2.9505-9.5888-8.4829Z"/>
+          <path fill="#002d5d" d="M731.8391,114.6395c0,4.2562-3.3269,7.5831-7.5831,7.5831-4.2071,0-7.5831-3.3269-7.5831-7.5831,0-4.2074,3.376-7.4852,7.5831-7.4852,4.2562,0,7.5831,3.2778,7.5831,7.4852Zm-13.6004,0c0,3.4736,2.5928,6.2134,6.0664,6.2134,3.3754,0,5.9197-2.7398,5.9197-6.1646s-2.5443-6.2131-5.9688-6.2131-6.0173,2.7886-6.0173,6.1643Zm4.6472,4.1587h-1.3694v-7.8769c.7335-.1467,1.5652-.2446,2.5928-.2446,1.3209,0,1.9569,.2446,2.4952,.6359,.4401,.2937,.7826,.9296,.7826,1.6635,0,.9784-.7335,1.5656-1.5652,1.8593v.0979c.7335,.2446,1.076,.8805,1.3209,1.9077,.2443,1.1742,.391,1.6635,.5868,1.9572h-1.4185c-.2449-.2937-.4408-.9788-.6366-2.0548-.1951-.8809-.7335-1.2722-1.8586-1.2722h-.93v3.3269Zm0-4.452h.9784c1.0767,0,2.0551-.2937,2.0551-1.223,0-.7829-.4892-1.3209-1.9077-1.3209-.5383,0-.8809,.0488-1.1258,.0976v2.4464Z"/>
+        </g>
+        <rect fill="#3cb4e5" x="114.3558" y="226.8714" width="566.1621" height="72.1104" rx="13.4018" ry="13.4018"/>
+        <g fill="#fff">
+          <path d="M176.0938,267.6348c0,7.4531-6.1807,13.5127-14.0576,13.5127s-14.0576-6.0596-14.0576-13.5127,6.1807-13.5117,14.0576-13.5117,14.0576,6.0586,14.0576,13.5117Zm-5.938,0c0-4.6055-3.6357-7.9375-8.1196-7.9375s-8.1191,3.332-8.1191,7.9375,3.6353,7.9375,8.1191,7.9375,8.1196-3.332,8.1196-7.9375Z"/>
+          <path d="M183.7891,254.7891h5.5137v-1.5752c0-9.8164,7.2715-10.1797,8.6045-10.1797,1.3936,0,2.7266,.1211,4.3018,.3633v5.3926c-1.3936-.1211-1.7568-.1211-1.7568-.1211-5.2109,.0605-5.2109,4.5449-5.2109,4.5449v1.5752h7.0283v5.5742h-7.0283v20.1172h-5.9385v-20.1172h-5.5137v-5.5742Z"/>
+          <path d="M258.3775,274.4209l7.271-29.0234h6.2412l-8.9678,35.083h-9.0889l-6.0596-23.0859-6.0591,23.0859h-9.0889l-8.9678-35.083h6.2412l7.271,29.0234,7.6348-29.0234h5.938l7.6348,29.0234Z"/>
+          <path d="M303.8829,274.9062v5.5742h-23.5103v-35.083h23.5103v5.5742h-17.5723v9.5742h16.2393v5.5742h-16.2393v8.7861h17.5723Z"/>
+          <path d="M312.4263,274.6025l4.3628-3.4531c1.3936,1.8779,4.8472,4.4229,9.5732,4.4229,5.6958,0,6.8472-3.5752,6.8472-4.4834,0-6.5439-19.9351-3.9385-19.9351-16.8447,0-3.2725,2.3027-9.4531,12.1187-9.4531,7.6953,0,11.2095,3.9385,12.4214,5.7568l-4.3022,3.2109c-2.1206-2.4238-5.5742-3.3926-8.5435-3.3926-2.9082,0-5.8169,1.9385-5.8169,4.3018,0,7.9375,19.9956,4.0596,19.9956,16.8447,0,3.3936-3.0298,9.6348-13.0879,9.6348-8.0591,0-11.937-4.0605-13.6333-6.5449Z"/>
+          <path d="M345.3892,250.9717v-5.5742h28.5996v5.5742h-11.3306v29.5088h-5.9385v-29.5088h-11.3306Z"/>
+          <path d="M397.0728,262.9688c0-10.0576,8.2402-18.1777,18.6016-18.1777,8.4834,0,15.6328,5.4541,17.9355,12.9668h-6.665c-1.9395-4.4229-6.2412-7.3916-11.2705-7.3916-6.8467,0-12.6641,5.4531-12.6641,12.6025,0,6.9082,5.8174,12.6035,12.6641,12.6035,5.0293,0,9.3311-2.9688,11.2705-7.3926h6.665c-2.3027,7.5137-9.4521,12.9678-17.9355,12.9678-10.3613,0-18.6016-8.1201-18.6016-18.1787Z"/>
+          <path d="M465.8453,267.5137h-16.9062v12.9668h-5.9375v-35.083h5.9375v16.542h16.9062v-16.542h5.9375v35.083h-5.9375v-12.9668Z"/>
+          <path d="M506.3804,274.9062v5.5742h-23.5098v-35.083h23.5098v5.5742h-17.5713v9.5742h16.2383v5.5742h-16.2383v8.7861h17.5713Z"/>
+          <path d="M514.9244,274.6025l4.3623-3.4531c1.3936,1.8779,4.8477,4.4229,9.5742,4.4229,5.6953,0,6.8467-3.5752,6.8467-4.4834,0-6.5439-19.9346-3.9385-19.9346-16.8447,0-3.2725,2.3018-9.4531,12.1182-9.4531,7.6953,0,11.21,3.9385,12.4219,5.7568l-4.3027,3.2109c-2.1201-2.4238-5.5742-3.3926-8.543-3.3926-2.9092,0-5.8174,1.9385-5.8174,4.3018,0,7.9375,19.9961,4.0596,19.9961,16.8447,0,3.3936-3.0303,9.6348-13.0889,9.6348-8.0586,0-11.9365-4.0605-13.6328-6.5449Z"/>
+          <path d="M547.8873,250.9717v-5.5742h28.5996v5.5742h-11.3311v29.5088h-5.9375v-29.5088h-11.3311Z"/>
+          <path d="M609.5689,274.9062v5.5742h-23.5098v-35.083h23.5098v5.5742h-17.5713v9.5742h16.2383v5.5742h-16.2383v8.7861h17.5713Z"/>
+          <path d="M640.2906,280.4805l-8.4834-10.4219h-6.1797v10.4219h-5.9385v-35.083h14.2393s12.2402,.1211,12.2402,12.3604c0,7.3926-4.4844,10.3613-8.0596,11.5127l8.7861,11.21h-6.6045Zm-14.6631-15.9961h7.9375c3.7568,0,6.665-1.6973,6.665-6.7266s-2.9082-6.7861-6.665-6.7861h-7.9375v13.5127Z"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#top" aria-label="Vital Care of West Chester, home">
+        <svg viewBox="0 0 684 236" role="img" aria-label="Vital Care of West Chester"><use href="#vc-logo" width="684" height="236"/></svg>
+      </a>
+      <button class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#patients">Patients</a></li>
+        <li><a href="#providers">Providers</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="btn btn-primary" href="#online-referral">Refer a patient</a></li>
+      </ul>
     </div>
-    <div class="steps" id="steps"></div>
-    <div class="body">
-      <div id="messages"></div>
-      <div id="panels"></div>
+  </header>
+
+  <main id="top">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="kicker">Home and outpatient infusion · West Chester, Ohio</p>
+        <h1>Specialty infusion care, at home.</h1>
+        <p class="lead">Infusion therapy for patients across Greater Cincinnati, coordinated by a local pharmacy team that handles the medication, nursing, and insurance.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#online-referral">Refer a patient</a>
+          <a class="link" href="#patients">Starting therapy</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img onerror="this.style.visibility='hidden'" src="https://images.unsplash.com/photo-1765896387387-0538bc9f997e?auto=format&fit=crop&w=2000&q=80" alt="A nurse talking with a patient">
+      </div>
+    </section>
+
+    <!-- Two doors -->
+    <section class="doors" id="patients">
+      <div class="wrap">
+        <div class="doors-head">
+          <h2>Where would you like to start?</h2>
+        </div>
+        <div class="doors-grid">
+          <a class="door" href="#faq">
+            <div class="door-photo">
+              <img onerror="this.style.visibility='hidden'" src="https://images.unsplash.com/photo-1765896387398-1e1ae8d2eb85?auto=format&fit=crop&w=1200&q=80" alt="A caregiver speaking with a patient" loading="lazy">
+            </div>
+            <div class="door-body">
+              <h3>I'm a patient or caregiver</h3>
+              <p>What happens after your referral, how to prepare, and who to call.</p>
+              <span class="link">Read the guide</span>
+            </div>
+          </a>
+          <a class="door door-dark" href="#providers">
+            <div class="door-photo">
+              <img onerror="this.style.visibility='hidden'" src="https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?auto=format&fit=crop&w=1200&q=80" alt="A clinician with a stethoscope" loading="lazy">
+            </div>
+            <div class="door-body">
+              <h3>I'm a healthcare provider</h3>
+              <p>Referral instructions, required documents, and our direct numbers.</p>
+              <span class="link link-light">Refer a patient</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="split-head">
+          <h2>Therapies we provide.</h2>
+          <p class="lead">Don't see the therapy you need? Call <a class="link" style="font-size:inherit" href="tel:+15137805880">(513) 780-5880</a></p>
+        </div>
+        <div class="service-list">
+          <div class="service">
+            <h3>Immunoglobulin (IG)</h3>
+            <p>IVIG and SCIG for immune deficiency and neuromuscular conditions.</p>
+          </div>
+          <div class="service">
+            <h3>Anti-infectives</h3>
+            <p>IV antibiotics, antifungals, and antivirals.</p>
+          </div>
+          <div class="service">
+            <h3>Nutrition</h3>
+            <p>Parenteral (TPN) and enteral nutrition.</p>
+          </div>
+          <div class="service">
+            <h3>Neurology</h3>
+            <p>Specialty infusions for neurological conditions.</p>
+          </div>
+          <div class="service">
+            <h3>Gastroenterology and rheumatology</h3>
+            <p>Biologic infusions prescribed for GI and autoimmune conditions.</p>
+          </div>
+          <div class="service">
+            <h3>Other specialty therapies</h3>
+            <p>Alpha-1 augmentation, dermatology, and other home infusion therapies.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process">
+      <div class="wrap">
+        <p class="kicker">How it works</p>
+        <h2>From referral to first infusion.</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-n">1</div>
+            <h3>Referral</h3>
+            <p>Your provider sends the order and records. We check that nothing is missing.</p>
+          </div>
+          <div class="step">
+            <div class="step-n">2</div>
+            <h3>Insurance</h3>
+            <p>We verify benefits and handle prior authorization with your plan.</p>
+          </div>
+          <div class="step">
+            <div class="step-n">3</div>
+            <h3>Scheduling</h3>
+            <p>We call you to set the date, setting, and supply delivery.</p>
+          </div>
+          <div class="step">
+            <div class="step-n">4</div>
+            <h3>Treatment</h3>
+            <p>Our team supports you through therapy and updates your provider.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Care settings -->
+    <section class="feature">
+      <div class="wrap feature-grid">
+        <div class="feature-photo">
+          <img onerror="this.style.visibility='hidden'" src="https://images.unsplash.com/photo-1631815590058-860e4f83c1e8?auto=format&fit=crop&w=1200&q=80" alt="A nurse checking a patient's blood pressure" loading="lazy">
+        </div>
+        <div>
+          <p class="kicker">Care settings</p>
+          <h2>Treatment where it works best for you.</h2>
+          <p class="lead">Your prescriber and our team choose the setting together, based on your therapy, health, and coverage.</p>
+          <div class="setting">
+            <h3>At home</h3>
+            <p>A nurse administers therapy in your home when the medication and care plan allow it.</p>
+          </div>
+          <div class="setting">
+            <h3>Alternate site</h3>
+            <p>An outpatient setting with clinical staff on site, for therapies that need closer monitoring.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Providers -->
+    <section class="providers" id="providers">
+      <div class="wrap provider-grid">
+        <div>
+          <p class="kicker">For providers</p>
+          <h2>Refer a patient.</h2>
+          <p class="lead">Submit online, or fax the referral form for the therapy with the order, recent office notes, labs, demographics, and both sides of the insurance card.</p>
+          <div class="provider-actions">
+            <a class="btn btn-white" href="#online-referral">Start a referral</a>
+            <a class="link link-light" href="tel:+15137805880">Call intake</a>
+          </div>
+        </div>
+        <div>
+          <div class="info-list">
+            <div class="info-row"><span>Phone</span><strong><a href="tel:+15137805880">(513) 780-5880</a></strong></div>
+            <div class="info-row"><span>Secure fax</span><strong>(513) 780-5881</strong></div>
+            <div class="info-row"><span>Address</span><strong>8731 Union Centre Blvd.<br>West Chester, OH 45069</strong></div>
+          </div>
+          <div class="requirement">
+            <h3>IG referrals need a wet signature</h3>
+            <p>The prescriber must sign IG referral forms by hand. Stamped and electronic signatures are not accepted.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Online referral -->
+    <section id="online-referral">
+      <div class="wrap">
+        <p class="kicker">Online referral</p>
+        <h2>Start a referral.</h2>
+        <p class="lead vcr-lead">Choose the therapy, fill in what you have, and download the completed
+          referral as a PDF. Print it, have the prescriber sign it, and fax it to (513) 780-5881.</p>
+        <p class="vcr-privacy">Nothing you type here is sent to us or saved online. The form is filled in
+          on your own device and the finished PDF is downloaded straight to it.</p>
+
+        <div id="vcr">
+          <p class="vcr-loading">Loading the referral form\u2026</p>
+          <div class="card" hidden>
+            <div class="steps" id="steps"></div>
+            <div class="body">
+              <div id="messages"></div>
+              <div id="panels"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="wrap faq-wrap">
+        <h2>Questions from patients.</h2>
+        <div class="faq">
+          <details>
+            <summary>What happens after my doctor sends a referral?</summary>
+            <div class="answer">
+              <p>We review it, verify your insurance, and call you to schedule. If anything is missing, we get it from your doctor's office directly.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Will I be treated at home or somewhere else?</summary>
+            <div class="answer">
+              <p>It depends on your medication, your health, and your insurance. Your prescriber and our team decide together, and the setting can change later if needed.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How should I prepare for my first infusion?</summary>
+            <div class="answer">
+              <ul>
+                <li>Confirm the date, time, location, and how long it will take.</li>
+                <li>Have your medication and allergy list ready.</li>
+                <li>Ask whether to eat, drink, or take your usual medications beforehand.</li>
+                <li>Wear clothing that gives easy access to your arm or line.</li>
+                <li>Arrange a ride if your care team recommends it.</li>
+              </ul>
+              <p>Always follow the specific instructions from your prescriber or nurse.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Will my insurance cover it?</summary>
+            <div class="answer">
+              <p>We check your benefits and handle prior authorization before treatment starts, and tell you what we know about your cost. Your health plan makes the final coverage decision.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Who do I call with a question during treatment?</summary>
+            <div class="answer">
+              <p>Call us at <a href="tel:+15137805880">(513) 780-5880</a>. For a medical emergency, call 911.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <h2>Contact us.</h2>
+          <dl>
+            <dt>Phone</dt>
+            <dd><a href="tel:+15137805880">(513) 780-5880</a></dd>
+            <dt>Fax</dt>
+            <dd>(513) 780-5881</dd>
+            <dt>Address</dt>
+            <dd>8731 Union Centre Blvd.<br>West Chester, OH 45069</dd>
+          </dl>
+          <p class="privacy">Please don't send medical information by email or through a website form. Send referrals and records by secure fax or the online referral.</p>
+        </div>
+        <div class="map">
+          <iframe title="Map to Vital Care of West Chester" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=8731%20Union%20Centre%20Blvd%2C%20West%20Chester%2C%20OH%2045069&z=15&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <a class="logo" href="#top" aria-label="Back to top">
+          <svg viewBox="0 0 684 236" role="img" aria-label="Vital Care of West Chester"><use href="#vc-logo" width="684" height="236"/></svg>
+        </a>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="#patients">Patients</a>
+          <a href="#providers">Providers</a>
+          <a href="#services">Services</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Vital Care of West Chester. All rights reserved.</span>
+        <span>(513) 780-5880 · Fax (513) 780-5881</span>
+      </div>
     </div>
-  </div>
-</div>
-<script src="./pdf-lib.min.js"></script>
-<script>
+  </footer>
+
+  <script>
+    (function () {
+    var yr = document.getElementById("year");
+    if (yr) yr.textContent = new Date().getFullYear();
+
+    // Mobile menu
+    var menuBtn = document.querySelector(".menu-btn");
+    var links = document.getElementById("nav-links");
+    if (!menuBtn || !links) return;
+    menuBtn.addEventListener("click", () => {
+      const open = links.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open);
+    });
+    links.addEventListener("click", (e) => {
+      if (e.target.closest("a")) {
+        links.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Anchor scrolling that accounts for the sticky header
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const hash = a.getAttribute("href");
+      if (hash === "#" || hash.length < 2) return;
+      const target = hash === "#top" ? document.body : document.querySelector(hash);
+      if (!target) return;
+      e.preventDefault();
+      const offset = document.querySelector("header").offsetHeight;
+      const top = hash === "#top" ? 0 : target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+      try { history.pushState(null, "", hash); } catch (err) {}
+    });
+    })();
+  </script>
+
+  <script>
 (function () {
   'use strict';
   var FORMS = null, current = null, steps = [], stepIndex = 0;
@@ -521,7 +1101,8 @@
   // pdf-lib draws text at the field's built-in font size and clips whatever
   // runs past the edge. Measure first, then shrink — and wrap where the box is
   // tall enough — so a long practice name or address is never silently cut off.
-  var MIN_SIZE = 5;     // smaller than this smudges when faxed
+  var SMALL    = 5;     // below this it is readable but worth flagging
+  var ABS_MIN  = 4;     // hard floor; smaller than this is not worth printing
   var COMFORT  = 6;     // don't shrink a single line past this before trying to wrap
   var WRAP_MIN = 5.5;   // smallest size worth wrapping at
   var SAFETY   = 0.98;  // the PDF's own font may measure a hair wider than Helvetica
@@ -560,59 +1141,80 @@
     return lines;
   }
 
-  // null => already fits. Otherwise {size, multiline, overflow}.
-  // Order of preference: one line at a comfortable size, then wrapped onto
-  // several lines, then one small line. Two readable lines beat one tiny one.
-  function fitText(field, text, font) {
+  // null => already fits. Otherwise {size, multiline, widen, small, overflow}.
+  //
+  // Tried in order, least disturbance first: a comfortable single line in the
+  // box, then using the empty space beside the box, then wrapped onto several
+  // lines, then progressively smaller. A referral is worth more complete and
+  // small than tidy and cut in half, so clipping is the very last resort.
+  function fitText(field, text, font, room) {
     var ws;
     try { ws = field.acroField.getWidgets(); } catch (e) { return null; }
     if (!ws || !ws.length) return null;
     var b = textBounds(ws[0]);
-    var size0  = daSize(field, 7);
-    var availW = b.w * SAFETY;
-    var s, n;
+    var size0 = daSize(field, 7);
+    var boxW  = b.w * SAFETY;
+    var maxW  = (b.w + (room || 0)) * SAFETY;
 
-    if (font.widthOfTextAtSize(text, size0) <= availW) return null;   // already fits
+    if (font.widthOfTextAtSize(text, size0) <= boxW) return null;   // already fits
 
-    // 1. one line, no smaller than comfortable
-    for (s = size0; s >= COMFORT; s -= 0.25) {
-      if (font.widthOfTextAtSize(text, s) <= availW) {
-        return { size: Math.round(s * 4) / 4, multiline: false, overflow: false };
+    function widenFor(size) {
+      var over = font.widthOfTextAtSize(text, size) - boxW;
+      return over <= 0 ? 0 : Math.min(room || 0, Math.ceil(over) + 2);
+    }
+    function result(s, wide, ml) {
+      return { size: q(s), multiline: !!ml, widen: wide ? widenFor(s) : 0,
+               small: s < SMALL, overflow: false };
+    }
+
+    // floor, use-the-space-beside-the-box, wrap
+    var tiers = [
+      [COMFORT,  false, false],
+      [COMFORT,  true,  false],
+      [WRAP_MIN, false, true ],
+      [SMALL,    false, false],
+      [SMALL,    true,  false],
+      [ABS_MIN,  false, true ],
+      [ABS_MIN,  true,  false]
+    ];
+
+    for (var t = 0; t < tiers.length; t++) {
+      var floor = tiers[t][0], useRoom = tiers[t][1], wrap = tiers[t][2];
+      if (useRoom && !room) continue;                 // nothing to extend into
+      var W = useRoom ? maxW : boxW;
+      for (var s = size0; s >= floor; s -= 0.25) {
+        if (wrap) {
+          var n = wrapLines(text, s, W, font);
+          if (n > 1 && n * lineHeight(s) <= b.h) return result(s, false, true);
+        } else if (font.widthOfTextAtSize(text, s) <= W) {
+          return result(s, useRoom, false);
+        }
       }
     }
 
-    // 2. wrap onto as many lines as the box really holds
-    for (s = size0; s >= WRAP_MIN; s -= 0.25) {
-      n = wrapLines(text, s, availW, font);
-      if (n > 1 && n * lineHeight(s) <= b.h) {
-        return { size: Math.round(s * 4) / 4, multiline: true, overflow: false };
-      }
-    }
-
-    // 3. one line, as small as is still legible
-    for (s = COMFORT; s >= MIN_SIZE; s -= 0.25) {
-      if (font.widthOfTextAtSize(text, s) <= availW) {
-        return { size: Math.round(s * 4) / 4, multiline: false, overflow: false };
-      }
-    }
-
-    // 4. nothing fits — wrap if there is the height for it, else smallest line
-    if (2 * lineHeight(MIN_SIZE) <= b.h) {
-      return { size: MIN_SIZE, multiline: true, overflow: true };
-    }
-    return { size: MIN_SIZE, multiline: false, overflow: true };
+    return { size: ABS_MIN, multiline: false, widen: room || 0,
+             small: true, overflow: true };
   }
 
-  // Write text into a field, shrinking or wrapping it to fit.
-  // Returns true when even the smallest size still overruns the box.
-  function setFitted(field, text, font) {
-    var fit = fitText(field, text, font);
+  function q(n) { return Math.round(n * 4) / 4; }
+
+  // Write text into a field, shrinking, wrapping, or letting it use the empty
+  // space beside the box. Returns 'small', 'over', or '' .
+  function setFitted(field, text, font, room) {
+    var fit = fitText(field, text, font, room);
     if (fit) {
+      if (fit.widen > 0) {
+        try {
+          var wg = field.acroField.getWidgets()[0];
+          var r = wg.getRectangle();
+          wg.setRectangle({ x: r.x, y: r.y, width: r.width + fit.widen, height: r.height });
+        } catch (e) {}
+      }
       if (fit.multiline) { try { field.enableMultiline(); } catch (e) {} }
       try { field.setFontSize(fit.size); } catch (e) {}
     }
     field.setText(text);
-    return !!(fit && fit.overflow);
+    return !fit ? '' : (fit.overflow ? 'over' : (fit.small ? 'small' : ''));
   }
 
   function loadPdf() {
@@ -634,7 +1236,11 @@
     var btn = document.getElementById('go');
     btn.disabled = true;
     msg('Generating PDF…', 'info');
-    var filled = 0, problems = [], tooLong = [], patient = '';
+    var filled = 0, problems = [], tooLong = [], shrunk = [], patient = '';
+    function note(how, label) {
+      if (how === 'over') tooLong.push(label);
+      else if (how === 'small') shrunk.push(label);
+    }
 
     loadPdf().then(function (doc) {
      return doc.embedFont(PDFLib.StandardFonts.Helvetica).then(function (font) {
@@ -647,7 +1253,7 @@
         try {
           if (f.g === 'Auto') {
             var v = PHARMACY[f.l.toLowerCase().trim()];
-            if (v) { if (setFitted(obj, v, font)) tooLong.push(f.l); filled++; }
+            if (v) { note(setFitted(obj, v, font, f.xr), f.l); filled++; }
             return;
           }
           if (f.k === 'check') {
@@ -659,7 +1265,7 @@
           } else {
             var t = valueOf(f);
             if (t) {
-              if (setFitted(obj, t, font)) tooLong.push(f.l);
+              note(setFitted(obj, t, font, f.xr), f.l);
               filled++;
               if (/last name|patient name|patient legal name/i.test(f.l)) patient = t.split(/[\s,]+/)[0];
             }
@@ -677,9 +1283,11 @@
       var h = '<strong>Downloaded.</strong> Print, have the prescriber sign, and fax to (513) 780-5881. Filled ' +
               filled + ' field' + (filled===1?'':'s') + '.';
       if (problems.length) h += '<br><strong>Could not write:</strong> ' + esc(problems.slice(0,8).join(', '));
-      if (tooLong.length) h += '<br><strong>Too long for the box, even at the smallest size:</strong> ' +
+      if (shrunk.length) h += '<br><strong>Printed small to fit the box:</strong> ' +
+        esc(shrunk.slice(0,8).join(', ')) + ' \u2014 readable, but shorten them if you want them bigger.';
+      if (tooLong.length) h += '<br><strong>Too long to print in full:</strong> ' +
         esc(tooLong.slice(0,8).join(', ')) + ' \u2014 shorten these and download again.';
-      msg(h, (problems.length || tooLong.length) ? 'warn' : 'success');
+      msg(h, (problems.length || tooLong.length) ? 'warn' : (shrunk.length ? 'info' : 'success'));
       btn.disabled = false;
     }).catch(function (err) {
       console.error(err);
@@ -703,25 +1311,72 @@
     });
   }
 
-  window.onerror = function (m, s, l) { msg('Script error: ' + esc(m) + ' (line ' + l + ')', 'error'); };
+  window.addEventListener('error', function (ev) {
+    if (document.getElementById('messages')) msg('Script error: ' + esc(ev.message), 'error');
+  });
 
-  if (typeof PDFLib === 'undefined') {
-    buildSteps(); renderSteps(); renderAll();
-    diagnose();
-  } else {
-    fetch('./forms.json').then(function (r) {
-      if (!r.ok) throw new Error('forms.json missing (HTTP ' + r.status + ')');
-      return r.json();
-    }).then(function (d) {
-      FORMS = d;
-      buildSteps(); renderSteps(); renderAll();
-    }).catch(function (e) {
-      msg('Could not load forms.json — it must sit beside index.html. (' + esc(e.message) + ')', 'error');
-    });
-  }
+  // Started by the loader below once pdf-lib is in memory, so a visitor who
+  // never opens the referral form never downloads it.
+  window.VCReferral = {
+    start: function () {
+      if (typeof PDFLib === 'undefined') { buildSteps(); renderSteps(); renderAll(); diagnose(); return; }
+      fetch('./forms.json').then(function (r) {
+        if (!r.ok) throw new Error('forms.json missing (HTTP ' + r.status + ')');
+        return r.json();
+      }).then(function (d) {
+        FORMS = d;
+        buildSteps(); renderSteps(); renderAll();
+      }).catch(function (e) {
+        msg('Could not load the referral forms \u2014 forms.json must sit beside this page. (' + esc(e.message) + ')', 'error');
+      });
+    },
+    fail: diagnose
+  };
 })();
 </script>
 
+  <script>
+  /* Pulls in pdf-lib and the form definitions the first time someone actually
+     reaches the referral section, so everyone else never downloads them. */
+  (function () {
+    var sec  = document.getElementById('online-referral');
+    var root = document.getElementById('vcr');
+    if (!sec || !root) return;
+    var started = false;
+
+    function reveal() {
+      var l = root.querySelector('.vcr-loading');
+      if (l && l.parentNode) l.parentNode.removeChild(l);
+      var c = root.querySelector('.card');
+      if (c) c.hidden = false;
+    }
+    function start() {
+      if (started) return;
+      started = true;
+      var s = document.createElement('script');
+      s.src = './pdf-lib.min.js';
+      s.onload  = function () { reveal(); window.VCReferral.start(); };
+      s.onerror = function () { reveal(); window.VCReferral.fail(); };
+      document.head.appendChild(s);
+    }
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) { io.disconnect(); start(); return; }
+        }
+      }, { rootMargin: '700px' });
+      io.observe(sec);
+    } else {
+      start();
+    }
+
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href="#online-referral"]');
+      if (a) start();
+    });
+  })();
+  </script>
 <!-- ═══════════════════════════════════════════════════════════════════
      TEST DATA BUTTON — DELETE THIS ENTIRE BLOCK BEFORE PRODUCTION USE.
      Everything for the feature lives between these two comment markers:
@@ -744,6 +1399,13 @@
 <script>
 (function () {
   'use strict';
+
+  // Only shown when the page is opened with ?test=1
+  if (!/[?&]test=1(&|$)/.test(window.location.search)) {
+    var bar = document.getElementById('testDataBar');
+    if (bar && bar.parentNode) bar.parentNode.removeChild(bar);
+    return;
+  }
 
   var FIRST = ['Amara','Devon','Priya','Marcus','Lena','Tobias','Rosa','Hollis','Nadia','Emmett',
                'Isolde','Rafael','Junie','Casper','Marguerite','Theo'];
@@ -793,7 +1455,7 @@
       npi: num(10),
       practice: pr,
       contact: pick(FIRST) + ' ' + pick(LAST) + ', RN',
-      email: 'referrals@' + pr.toLowerCase().replace(/[^a-z]+/g,'') + '.example',
+      email: 'referrals@' + pr.split(/\s+/).map(function(x){return x[0];}).join('').toLowerCase() + 'med.example',
       dx: dx[0], icd: dx[1],
       med: med[0], dose: med[1],
       access: pick(['Peripheral IV','PICC','Port']),
@@ -887,5 +1549,6 @@
 })();
 </script>
 <!-- ═══════════ END TEST DATA BUTTON — delete to here ═══════════ -->
+
 </body>
 </html>
