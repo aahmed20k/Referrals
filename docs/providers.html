@@ -250,6 +250,9 @@
     @media (max-width: 900px) { #online-referral { padding: 80px 0; } }
 
     
+    /* the hero title breaks after the comma; balance what is left on each line */
+    .hero h1 { text-wrap: balance; }
+
     /* keep the grey/white rhythm from stacking once sections live on their own pages */
     #online-referral { background: var(--white); }
     #faq { background: var(--gray); }
@@ -308,6 +311,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
       </button>
       <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
         <li><a href="patients.html">Patients</a></li>
         <li><a href="providers.html" aria-current="page">Providers</a></li>
         <li><a href="index.html#services">Services</a></li>
@@ -421,6 +425,7 @@
           <svg viewBox="0 0 684 236" role="img" aria-label="Vital Care of West Chester"><use href="#vc-logo" width="684" height="236"/></svg>
         </a>
         <nav class="footer-links" aria-label="Footer">
+          <a href="index.html">Home</a>
           <a href="patients.html">Patients</a>
           <a href="providers.html">Providers</a>
           <a href="index.html#services">Services</a>
