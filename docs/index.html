@@ -3,8 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Home and alternate-site infusion therapy in West Chester and the Greater Cincinnati area. Refer a patient online." />
-  <title>Vital Care of West Chester | Infusion Therapy</title>
   <style>
     :root {
       --navy: #002d5d;
@@ -219,7 +217,6 @@
       .info-row strong { text-align: left; }
     }
 
-
     /* Patient resources */
     .res-lead { max-width: 640px; }
     .res-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 56px; margin-top: 56px; }
@@ -245,7 +242,6 @@
     }
     #vcr h2, #vcr h3, #vcr h4, #vcr h5 { letter-spacing: normal; line-height: 1.3; font-weight: 700; }
     #vcr p { margin: 0; }
-
 
     @media (max-width: 900px) { #online-referral { padding: 80px 0; } }
 
@@ -394,6 +390,34 @@
     #vcr button.ghost { background: var(--white); color: var(--text); border: 1px solid var(--line); }
     #vcr button.ghost:hover { background: var(--gray); }
   </style>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#002d5d" />
+  <link rel="stylesheet" href="site.css" />
+  <script src="site-config.js"></script>
+  <script src="site.js" defer></script>
+
+  <style>
+    h1.page-title { font-size: clamp(2rem, 4.2vw, 3rem); }
+    .providers h1 { color: var(--white); }
+    #online-referral h1 { margin-bottom: 18px; }
+    .contact h1 { margin-bottom: 32px; }
+    .faq-wrap h1 { text-align: center; margin-bottom: 48px; }
+    .feature h1, .about-grid h1 { margin-bottom: 20px; }
+    .nav-links .btn[aria-current="page"] { color: var(--white); background: #086a99; }
+    .more-links { display: flex; flex-wrap: wrap; gap: 16px 40px; margin-top: 28px; font-size: 1.1rem; }
+    .page-cta { padding: 88px 0; }
+  </style>
+
+  <title>Vital Care of West Chester | Infusion Therapy</title>
+  <meta name="description" content="Home and infusion-suite infusion therapy for Greater Cincinnati and Dayton: immunoglobulin, biologics, anti-infectives and nutrition. Refer a patient online." />
+  <link rel="canonical" href="https://vitalcareofwestchester.com/" />
+  <meta property="og:title" content="Vital Care of West Chester | Infusion Therapy" />
+  <meta property="og:description" content="Home and infusion-suite infusion therapy for Greater Cincinnati and Dayton: immunoglobulin, biologics, anti-infectives and nutrition. Refer a patient online." />
+  <meta property="og:url" content="https://vitalcareofwestchester.com/" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Pharmacy", "name": "Vital Care of West Chester", "url": "https://vitalcareofwestchester.com/", "telephone": "+1-513-780-5880", "faxNumber": "+1-513-780-5881", "address": {"@type": "PostalAddress", "streetAddress": "8731 Union Centre Blvd.", "addressLocality": "West Chester", "addressRegion": "OH", "postalCode": "45069", "addressCountry": "US"}, "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:30", "closes": "16:00"}], "areaServed": ["Greater Cincinnati", "Dayton, Ohio"], "medicalSpecialty": "Pharmacy", "description": "Home and infusion-suite infusion pharmacy serving Greater Cincinnati and Dayton."}</script>
+  <script>/* old one-page links -> new pages */(function(){var m={"#online-referral": "refer.html", "#services": "services.html", "#contact": "contact.html", "#about": "about.html", "#why": "about.html", "#patients": "patients.html"};var t=m[location.hash];if(t)location.replace(t);})();</script>
 </head>
 <body>
 
@@ -436,19 +460,20 @@
 
   <header>
     <div class="wrap nav">
-      <a class="logo" href="#top" aria-label="Vital Care of West Chester, home">
+      <a class="logo" href="index.html" aria-label="Vital Care of West Chester, home">
         <svg viewBox="0 0 684 236" role="img" aria-label="Vital Care of West Chester"><use href="#vc-logo" width="684" height="236"/></svg>
       </a>
       <button class="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
       </button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#top" aria-current="page">Home</a></li>
+        <li><a href="index.html" aria-current="page">Home</a></li>
         <li><a href="patients.html">Patients</a></li>
         <li><a href="providers.html">Providers</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a class="btn btn-primary" href="#online-referral">Refer a patient</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a class="btn btn-primary" href="refer.html">Refer a patient</a></li>
       </ul>
     </div>
   </header>
@@ -459,9 +484,9 @@
       <div class="wrap">
         <p class="kicker">Home and outpatient infusion · West Chester, Ohio</p>
         <h1>Specialty Infusion Care,<br>At Home.</h1>
-        <p class="lead">Infusion therapy for patients across Greater Cincinnati, coordinated by a local pharmacy team that handles the medication, nursing, and insurance.</p>
+        <p class="lead">Infusion therapy for patients across Greater Cincinnati and Dayton, at home or in our infusion suite, coordinated by a local pharmacy team that handles the medication, nursing, and insurance.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#online-referral">Refer a patient</a>
+          <a class="btn btn-primary" href="refer.html">Refer a patient</a>
           <a class="link" href="patients.html">Starting therapy</a>
         </div>
       </div>
@@ -469,13 +494,13 @@
         <img onerror="this.style.visibility='hidden'" src="https://images.unsplash.com/photo-1585412727339-54e4bae3bbf9?auto=format&fit=crop&crop=entropy&w=2000&h=875&q=80" alt="A sunlit living room with an armchair and houseplants">
       </div>
     </section>
-<section class="doors" id="patients">
+<section class="doors">
       <div class="wrap">
         <div class="doors-head">
           <h2>Where would you like to start?</h2>
         </div>
         <div class="doors-grid">
-          <a class="door" href="patients.html#faq">
+          <a class="door" href="patients.html">
             <div class="door-photo">
               <img onerror="this.style.visibility='hidden'" src="https://images.unsplash.com/photo-1702648156180-25d8be9c9527?auto=format&fit=crop&w=1200&q=80" alt="A woman reading with an older man on a couch at home" loading="lazy">
             </div>
@@ -498,104 +523,26 @@
         </div>
       </div>
     </section>
-<section class="services" id="services">
-      <div class="wrap">
-        <div class="split-head">
-          <h2>Therapies we provide.</h2>
-          <p class="lead">Don't see the therapy you need? Call <a class="link" style="font-size:inherit" href="tel:+15137805880">(513) 780-5880</a></p>
-        </div>
-        <div class="service-list">
-          <div class="service">
-            <h3>Immunoglobulin (IG)</h3>
-            <p>IVIG and SCIG for CIDP, common variable immunodeficiency, multifocal motor neuropathy,
-               myasthenia gravis, and related conditions.</p>
-          </div>
-          <div class="service">
-            <h3>Anti-infectives</h3>
-            <p>IV antibiotics, antifungals, and antivirals.</p>
-          </div>
-          <div class="service">
-            <h3>Nutrition</h3>
-            <p>Parenteral (TPN) and enteral nutrition.</p>
-          </div>
-          <div class="service">
-            <h3>Neurology</h3>
-            <p>Infused and injectable treatments for multiple sclerosis, myasthenia gravis, and other
-               neurologic conditions.</p>
-          </div>
-          <div class="service">
-            <h3>Gastroenterology and rheumatology</h3>
-            <p>Biologic infusions for Crohn's, ulcerative colitis, rheumatoid arthritis, and other
-               inflammatory and autoimmune conditions.</p>
-          </div>
-          <div class="service">
-            <h3>Other specialty therapies</h3>
-            <p>Alpha-1 antitrypsin deficiency augmentation, dermatology, and other complex conditions
-               that need close clinical monitoring.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-<section id="online-referral">
-      <div class="wrap">
-        <p class="kicker">Online referral</p>
-        <h2>Start a referral.</h2>
-        <p class="lead vcr-lead">Choose the therapy, fill in what you have, and download the completed
-          referral as a PDF. Print it, have the prescriber sign it, and fax it to (513) 780-5881.</p>
-        <p class="vcr-privacy">Nothing you type here is sent to us or saved online. The form is filled in
-          on your own device and the finished PDF is downloaded straight to it.</p>
-
-        <div id="vcr">
-          <p class="vcr-loading">Loading the referral form…</p>
-          <div class="card" hidden>
-            <div class="steps" id="steps"></div>
-            <div class="body">
-              <div id="messages"></div>
-              <div id="panels"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-<section class="contact" id="contact">
-      <div class="wrap contact-grid">
-        <div>
-          <h2>Contact us.</h2>
-          <dl>
-            <dt>Phone</dt>
-            <dd><a href="tel:+15137805880">(513) 780-5880</a></dd>
-            <dt>Fax</dt>
-            <dd>(513) 780-5881</dd>
-            <dt>Hours</dt>
-            <dd>Monday&ndash;Friday, 8:30am&ndash;4pm<br><span style="font-weight:400;color:var(--muted);font-size:1rem">Closed Saturday and Sunday</span></dd>
-            <dt>Address</dt>
-            <dd>8731 Union Centre Blvd.<br>West Chester, OH 45069</dd>
-          </dl>
-          <p class="privacy">Please don't send medical information by email or through a website form. Send referrals and records by secure fax or the online referral.</p>
-        </div>
-        <div class="map">
-          <iframe title="Map to Vital Care of West Chester" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            src="https://maps.google.com/maps?q=8731%20Union%20Centre%20Blvd%2C%20West%20Chester%2C%20OH%2045069&z=15&output=embed"></iframe>
-        </div>
-      </div>
-    </section>
 
   </main>
 
   <footer>
     <div class="wrap">
       <div class="footer-top">
-        <a class="logo" href="#top" aria-label="Back to top">
+        <a class="logo" href="index.html" aria-label="Vital Care of West Chester, home">
           <svg viewBox="0 0 684 236" role="img" aria-label="Vital Care of West Chester"><use href="#vc-logo" width="684" height="236"/></svg>
         </a>
         <nav class="footer-links" aria-label="Footer">
-          <a href="#top">Home</a>
+          <a href="index.html">Home</a>
           <a href="patients.html">Patients</a>
           <a href="providers.html">Providers</a>
-          <a href="#services">Services</a>
-          <a href="patients.html#faq">FAQ</a>
-          <a href="patients.html#resources">Resources</a>
-          <a href="#contact">Contact</a>
+          <a href="services.html">Services</a>
+          <a href="faq.html">FAQ</a>
+          <a href="resources.html">Patient forms</a>
+          <a href="after-referral.html">After you refer</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="refer.html">Refer a patient</a>
         </nav>
       </div>
       <div class="footer-bottom">
@@ -605,7 +552,6 @@
     </div>
   </footer>
 
-  
   <script>
     (function () {
 
@@ -654,711 +600,6 @@
       try { history.pushState(null, "", hash); } catch (err) {}
     });
     })();
-  </script>
-  <script>
-(function () {
-  'use strict';
-
-  // What the letterhead and cover sheet say about the pharmacy itself.
-  var PHARMACY = {
-    name: 'Vital Care of West Chester', address: '8731 Union Centre Blvd.',
-    csz: 'West Chester, OH 45069', phone: '(513) 780-5880', fax: '(513) 780-5881',
-    email: '', to: 'Vital Care of West Chester', intake: '(513) 780-5880'
-  };
-  var FAX = '(513) 780-5881';
-
-  var DATA = null;        // forms.json
-  var form = null;        // the form being filled
-  var S = {};             // answers for the current form, by question id
-  var SAVED = {};         // answers kept per form while switching between them
-  var steps = [], at = 0, uid = 0;
-
-  // ---------- small helpers ----------
-  function $(id) { return document.getElementById(id); }
-  function el(tag, cls, text) {
-    var e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text != null) e.textContent = text;
-    return e;
-  }
-  function msg(node, kind) {
-    var box = $('messages');
-    box.innerHTML = '';
-    if (!node) return;
-    var a = el('div', 'alert alert-' + (kind || 'info'));
-    if (typeof node === 'string') a.textContent = node; else a.appendChild(node);
-    box.appendChild(a);
-  }
-  function pad(n) { return (n < 10 ? '0' : '') + n; }
-  function today() { var d = new Date(); return pad(d.getMonth() + 1) + '/' + pad(d.getDate()) + '/' + d.getFullYear(); }
-  function isoToday() { var d = new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
-
-  // Give every question and option an id, and set starting values.
-  function prepare(items) {
-    items.forEach(function (it) {
-      it._id = 'q' + (uid++);
-      if (it.k === 'text' && it.today && S[it._id] == null) S[it._id] = today();
-      (it.opts || []).forEach(function (o) { o._id = 'q' + (uid++); if (o.then) prepare(o.then); });
-      if (it.then) prepare(it.then);
-      if (it.items) prepare(it.items);
-    });
-  }
-
-  // ---------- rendering ----------
-  function renderItems(items, host) {
-    var grid = null;
-    items.forEach(function (it) {
-      if (it.k === 'text') {
-        if (!grid) { grid = el('div', 'grid'); host.appendChild(grid); }
-        grid.appendChild(textBox(it));
-        return;
-      }
-      grid = null;
-      if (it.k === 'check') host.appendChild(checkBox(it));
-      else if (it.k === 'one' || it.k === 'many') host.appendChild(choice(it));
-      else if (it.k === 'card') host.appendChild(card(it));
-      else if (it.k === 'head') {
-        host.appendChild(el('h3', 'qh', it.l));
-        if (it.h) host.appendChild(el('p', 'qhint', it.h));
-      }
-      else if (it.k === 'note') host.appendChild(el('p', 'note', it.t));
-    });
-  }
-
-  function textBox(it) {
-    var d = el('div', 'fg' + (it.w || it.area ? ' wide' : ''));
-    var lab = el('label', null, it.l);
-    lab.htmlFor = it._id;
-    if (it.req) { var r = el('span', 'req', '*'); r.title = 'Needed for the referral'; lab.appendChild(r); }
-    var inp = it.area ? el('textarea') : el('input');
-    if (!it.area) inp.type = 'text';
-    inp.id = it._id;
-    inp.value = S[it._id] || '';
-    if (it.ph) inp.placeholder = it.ph;
-    inp.autocomplete = 'off';
-    inp.addEventListener('input', function () { S[it._id] = inp.value; });
-    d.appendChild(lab);
-    d.appendChild(inp);
-    return d;
-  }
-
-  function thenBox(items, shown) {
-    var b = el('div', 'then');
-    b.hidden = !shown;
-    renderItems(items, b);
-    return b;
-  }
-
-  function checkBox(it) {
-    var wrap = el('div', 'single');
-    var lab = el('label', 'opt');
-    var cb = el('input');
-    cb.type = 'checkbox'; cb.id = it._id; cb.checked = !!S[it._id];
-    lab.appendChild(cb);
-    lab.appendChild(el('span', null, it.l));
-    wrap.appendChild(lab);
-    var box = it.then ? thenBox(it.then, cb.checked) : null;
-    if (box) wrap.appendChild(box);
-    cb.addEventListener('change', function () {
-      S[it._id] = cb.checked;
-      if (box) box.hidden = !cb.checked;
-    });
-    return wrap;
-  }
-
-  function choice(it) {
-    var one = it.k === 'one';
-    var fs = el('fieldset', 'q');
-    fs.appendChild(el('legend', null, it.l));
-    if (it.h) fs.appendChild(el('p', 'qhint', it.h));
-    var long = it.opts.some(function (o) { return o.l.length > 30; }) || it.opts.length > 6;
-    var row = el('div', 'opts' + (long ? ' col' : ''));
-    var boxes = [], inputs = [];
-    it.opts.forEach(function (o, i) {
-      var lab = el('label', 'opt');
-      var inp = el('input');
-      inp.type = one ? 'radio' : 'checkbox';
-      inp.name = it._id;
-      inp.id = o._id;
-      inp.checked = one ? S[it._id] === i : !!S[o._id];
-      lab.appendChild(inp);
-      lab.appendChild(el('span', null, o.l));
-      row.appendChild(lab);
-      inputs.push(inp);
-      inp.addEventListener('change', function () {
-        if (one) { S[it._id] = i; }
-        else { S[o._id] = inp.checked; }
-        sync();
-      });
-    });
-    fs.appendChild(row);
-
-    var clear = null;
-    if (one) {
-      clear = el('button', 'clear', 'Clear answer');
-      clear.type = 'button';
-      clear.addEventListener('click', function () {
-        S[it._id] = null;
-        inputs.forEach(function (x) { x.checked = false; });
-        sync();
-      });
-      fs.appendChild(clear);
-    }
-    // follow-up questions sit under the whole group, in option order
-    it.opts.forEach(function (o, i) {
-      if (!o.then) { boxes.push(null); return; }
-      var b = thenBox(o.then, false);
-      boxes.push(b);
-      fs.appendChild(b);
-    });
-    function sync() {
-      it.opts.forEach(function (o, i) {
-        var on = one ? S[it._id] === i : !!S[o._id];
-        if (boxes[i]) boxes[i].hidden = !on;
-      });
-      if (clear) clear.hidden = !(S[it._id] != null && S[it._id] >= 0);
-    }
-    sync();
-    return fs;
-  }
-
-  function card(it) {
-    var c = el('div', 'med');
-    var head = el('label', 'medhead');
-    var cb = el('input');
-    cb.type = 'checkbox'; cb.id = it._id; cb.checked = !!S[it._id];
-    head.appendChild(cb);
-    var t = el('div');
-    t.appendChild(el('b', null, it.l));
-    if (it.sub) t.appendChild(el('span', null, ' (' + it.sub + ')'));
-    head.appendChild(t);
-    c.appendChild(head);
-    var body = el('div', 'medbody');
-    renderItems(it.items, body);
-    c.appendChild(body);
-    function sync() {
-      body.hidden = !cb.checked;
-      c.classList.toggle('open', cb.checked);
-    }
-    cb.addEventListener('change', function () { S[it._id] = cb.checked; sync(); });
-    sync();
-    return c;
-  }
-
-  // ---------- reading the answers back ----------
-  // Only what is on screen counts: an answer under an option that is no longer
-  // chosen, or inside a medication card that is closed, is never written.
-  function collect(items, acc, prefix) {
-    items.forEach(function (it) {
-      var id = it._id, v;
-      if (it.k === 'text') {
-        v = (S[id] || '').trim();
-        if (!v) return;
-        acc.review.push([prefix + it.l, v]);
-        if (it.draw) acc.draws.push({ r: it.draw, t: v, l: prefix + it.l });
-        else {
-          acc.text.push({ f: it.f, t: v, l: prefix + it.l, more: it.more });
-          (it.also || []).forEach(function (f) { acc.text.push({ f: f, t: v, l: prefix + it.l }); });
-        }
-      } else if (it.k === 'check') {
-        if (!S[id]) return;
-        acc.review.push([prefix + it.l, 'Yes']);
-        if (it.val != null) acc.text.push({ f: it.f, t: it.val, l: prefix + it.l });
-        else acc.checks.push(it.f);
-        if (it.then) collect(it.then, acc, prefix);
-      } else if (it.k === 'one') {
-        v = S[id];
-        if (v == null || v < 0) return;
-        var o = it.opts[v];
-        acc.review.push([prefix + it.l, o.l]);
-        apply(it, o, acc, prefix);
-        if (o.then) collect(o.then, acc, prefix);
-      } else if (it.k === 'many') {
-        var picked = it.opts.filter(function (o) { return S[o._id]; });
-        if (!picked.length) return;
-        acc.review.push([prefix + it.l, picked.map(function (o) { return o.l; }).join('; ')]);
-        picked.forEach(function (o) { apply(it, o, acc, prefix); if (o.then) collect(o.then, acc, prefix); });
-      } else if (it.k === 'card') {
-        if (!S[id]) return;
-        acc.review.push([it.l, 'Ordered']);
-        if (it.f) acc.checks.push(it.f);
-        collect(it.items, acc, it.l + ': ');
-      }
-    });
-  }
-
-  function apply(it, o, acc, prefix) {
-    if (o.f) {
-      if (o.val != null) acc.text.push({ f: o.f, t: o.val, l: prefix + it.l });
-      else acc.checks.push(o.f);
-    } else if (o.val != null && it.f) {
-      acc.text.push({ f: it.f, t: o.val, l: prefix + it.l });
-    }
-    if (o.v != null) {
-      if (o.draw) acc.marks.push({ f: o.draw, v: o.v });
-      else acc.radios.push({ f: it.radio, v: o.v });
-    }
-    if (o.ring) acc.rings.push(o.ring);
-  }
-
-  function missing(items, out) {
-    items.forEach(function (it) {
-      if (it.k === 'text' && it.req && !(S[it._id] || '').trim()) out.push(it.l);
-      if (it.k === 'check' && S[it._id] && it.then) missing(it.then, out);
-      if (it.k === 'one' && S[it._id] != null && S[it._id] >= 0 && it.opts[S[it._id]].then) missing(it.opts[S[it._id]].then, out);
-      if (it.k === 'card' && S[it._id]) missing(it.items, out);
-    });
-  }
-
-  function newAcc() { return { review: [], text: [], checks: [], radios: [], marks: [], draws: [], rings: [] }; }
-
-  // ---------- steps ----------
-  function buildSteps() {
-    steps = [{ id: 'type', title: 'Choose a referral type', label: 'Referral type',
-               sub: 'Pick the therapy. The questions that follow match that referral form.' }];
-    if (form) {
-      form.steps.forEach(function (s) { steps.push({ id: s.id, title: s.title, label: s.title, sub: s.sub, step: s }); });
-      steps.push({ id: 'review', title: 'Review and download', label: 'Review',
-                   sub: 'Check the answers, then download the filled referral as a PDF.' });
-    }
-  }
-
-  function renderSteps() {
-    var bar = $('steps');
-    bar.innerHTML = '';
-    steps.forEach(function (s, i) {
-      var b = el('button', 'step');
-      b.type = 'button';
-      var n = el('span', 'num', String(i + 1));
-      b.appendChild(n);
-      b.appendChild(document.createTextNode(s.label));
-      if (i === at) { b.className += ' active'; b.setAttribute('aria-current', 'step'); }
-      else if (form && i < at) b.className += ' done';
-      if (!form && i > 0) b.disabled = true;
-      b.addEventListener('click', function () { go(i); });
-      bar.appendChild(b);
-    });
-  }
-
-  function renderPanels() {
-    var host = $('panels');
-    host.innerHTML = '';
-    steps.forEach(function (s, i) {
-      var p = el('div', 'panel' + (i === at ? ' on' : ''));
-      p.appendChild(el('h2', 'ptitle', s.title));
-      if (s.sub) p.appendChild(el('p', 'psub', s.sub));
-      if (s.id === 'type') renderTypes(p);
-      else if (s.id === 'review') { var rb = el('div'); rb.id = 'reviewBody'; p.appendChild(rb); }
-      else renderItems(s.step.items, p);
-      if (i > 0 || form) p.appendChild(navRow(i));
-      host.appendChild(p);
-    });
-  }
-
-  function navRow(i) {
-    var nav = el('div', 'nav');
-    if (i > 0) {
-      var back = el('button', 'btn ghost', 'Back');
-      back.type = 'button';
-      back.addEventListener('click', function () { go(i - 1); });
-      nav.appendChild(back);
-    }
-    if (steps[i].id === 'review') {
-      var clr = el('button', 'link', 'Clear all answers');
-      clr.type = 'button';
-      clr.addEventListener('click', function () {
-        if (clr.getAttribute('data-sure')) { clearAll(); return; }
-        clr.setAttribute('data-sure', '1');
-        clr.textContent = 'Click again to clear everything';
-        setTimeout(function () { clr.removeAttribute('data-sure'); clr.textContent = 'Clear all answers'; }, 4000);
-      });
-      nav.appendChild(clr);
-    }
-    nav.appendChild(el('div', 'spacer'));
-    if (steps[i].id === 'review') {
-      var go2 = el('button', 'btn primary', 'Download filled PDF');
-      go2.type = 'button'; go2.id = 'go';
-      go2.addEventListener('click', download);
-      nav.appendChild(go2);
-    } else if (i > 0 || form) {
-      var next = el('button', 'btn primary', 'Continue');
-      next.type = 'button';
-      next.addEventListener('click', function () { go(i + 1); });
-      if (!form) next.disabled = true;
-      nav.appendChild(next);
-    }
-    return nav;
-  }
-
-  function renderTypes(p) {
-    if (!DATA) { p.appendChild(el('p', 'empty', 'Referral types could not be loaded.')); return; }
-    var g = el('div', 'types');
-    DATA.order.forEach(function (code) {
-      var f = DATA.forms[code];
-      var b = el('button', 'tcard' + (form && form.code === code ? ' sel' : ''));
-      b.type = 'button';
-      b.appendChild(el('b', null, f.title));
-      if (f.blurb) b.appendChild(el('span', null, f.blurb));
-      b.addEventListener('click', function () { choose(code); });
-      g.appendChild(b);
-    });
-    p.appendChild(g);
-  }
-
-  function scrollToForm() {
-    var host = $('vcr');
-    if (!host) return;
-    var hdr = document.querySelector('header');
-    var y = host.getBoundingClientRect().top + window.scrollY - ((hdr ? hdr.offsetHeight : 0) + 16);
-    if (Math.abs(window.scrollY - y) > 40) window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-  }
-
-  function go(i) {
-    if (i < 0 || i >= steps.length || (!form && i > 0)) return;
-    at = i;
-    renderSteps();
-    var ps = document.querySelectorAll('#panels .panel');
-    for (var k = 0; k < ps.length; k++) ps[k].classList.toggle('on', k === i);
-    if (steps[i].id === 'review') renderReview();
-    msg(null);
-    scrollToForm();
-  }
-
-  function choose(code) {
-    if (form) SAVED[form.code] = S;
-    form = DATA.forms[code];
-    S = SAVED[code] || {};
-    uid = 0;
-    form.steps.forEach(function (s) { prepare(s.items); });
-    buildSteps();
-    renderSteps();
-    renderPanels();
-    go(1);
-  }
-
-  function clearAll() {
-    S = {};
-    SAVED[form.code] = S;
-    uid = 0;
-    form.steps.forEach(function (s) { prepare(s.items); });
-    var keep = at;
-    renderPanels();
-    go(keep);
-    msg('All answers for this referral were cleared.', 'info');
-  }
-
-  function renderReview() {
-    var host = $('reviewBody');
-    host.innerHTML = '';
-    var need = [];
-    form.steps.forEach(function (s) { missing(s.items, need); });
-    if (need.length) {
-      var w = el('div', 'alert alert-warn');
-      w.appendChild(document.createTextNode('These are still blank. You can download anyway, but the referral may be delayed:'));
-      var ul = el('ul');
-      need.forEach(function (n) { ul.appendChild(el('li', null, n)); });
-      w.appendChild(ul);
-      host.appendChild(w);
-    }
-    form.steps.forEach(function (s, si) {
-      var acc = newAcc();
-      collect(s.items, acc, '');
-      var block = el('div', 'rev');
-      var h = el('h4', null, s.title);
-      var edit = el('button', null, 'Edit');
-      edit.type = 'button';
-      edit.addEventListener('click', function () { go(si + 1); });
-      h.appendChild(edit);
-      block.appendChild(h);
-      if (acc.review.length) {
-        var dl = el('dl');
-        acc.review.forEach(function (r) { dl.appendChild(el('dt', null, r[0])); dl.appendChild(el('dd', null, r[1])); });
-        block.appendChild(dl);
-      } else block.appendChild(el('div', 'none', 'Nothing entered'));
-      host.appendChild(block);
-    });
-    host.appendChild(el('p', 'after',
-      'The prescriber must sign and date the printed form by hand. Stamped, computer-generated or ' +
-      'staff signatures are not accepted. Fax it with the clinical notes, labs and insurance cards to ' + FAX + '.'));
-  }
-
-  // ---------- writing the PDF ----------
-  // pdf-lib draws text at the field's own font size and clips anything past the
-  // edge. Measure first, then shrink or wrap so nothing is silently cut off.
-  var SMALL = 5, ABS_MIN = 4, COMFORT = 6, WRAP_MIN = 5.5, SAFETY = 0.98;
-
-  function daSize(field) {
-    try {
-      var m = /\/[^\s]+\s+([\d.]+)\s+Tf/.exec(field.acroField.getDefaultAppearance() || '');
-      if (m && parseFloat(m[1]) > 0) return parseFloat(m[1]);
-    } catch (e) {}
-    return 0;
-  }
-  function bounds(widget) {
-    var r = widget.getRectangle(), bw = 0;
-    try { var bs = widget.getBorderStyle(); if (bs && bs.getWidth) bw = bs.getWidth() || 0; } catch (e) {}
-    var inset = (bw + 1) * 2;
-    return { w: Math.max(r.width - inset, 6), h: Math.max(r.height - inset, 4) };
-  }
-  function startSize(field, b) {
-    // a field set to "auto" size would fill the whole height and clip the descenders
-    return daSize(field) || Math.max(6, Math.min(10, b.h * 0.62));
-  }
-  function lineHeight(s) { return s * 0.925 * 1.2; }
-  function wrapCount(text, s, avail, font) {
-    var words = String(text).split(/\s+/), n = 1, cur = '';
-    for (var i = 0; i < words.length; i++) {
-      if (!words[i]) continue;
-      var t = cur ? cur + ' ' + words[i] : words[i];
-      if (!cur || font.widthOfTextAtSize(t, s) <= avail) cur = t; else { n++; cur = words[i]; }
-    }
-    return n;
-  }
-  function fit(field, text, font) {
-    var ws = field.acroField.getWidgets();
-    if (!ws.length) return null;
-    var b = bounds(ws[0]), s0 = startSize(field, b), W = b.w * SAFETY;
-    if (font.widthOfTextAtSize(text, s0) <= W) return { size: s0 };
-    var tiers = [[COMFORT, false], [WRAP_MIN, true], [SMALL, false], [ABS_MIN, true]];
-    for (var t = 0; t < tiers.length; t++) {
-      for (var s = s0; s >= tiers[t][0]; s -= 0.25) {
-        if (tiers[t][1]) {
-          var n = wrapCount(text, s, W, font);
-          if (n > 1 && n * lineHeight(s) <= b.h) return { size: s, multi: true, small: s < SMALL };
-        } else if (font.widthOfTextAtSize(text, s) <= W) return { size: s, small: s < SMALL };
-      }
-    }
-    return { size: ABS_MIN, small: true, over: true };
-  }
-  // Split long text across the extra lines a form provides (e.g. three allergy lines).
-  function splitFor(field, text, font) {
-    var ws = field.acroField.getWidgets();
-    var b = bounds(ws[0]), s = startSize(field, b), W = b.w * SAFETY;
-    var words = text.split(/\s+/), cur = '';
-    for (var i = 0; i < words.length; i++) {
-      var t = cur ? cur + ' ' + words[i] : words[i];
-      if (cur && font.widthOfTextAtSize(t, s) > W) return [cur, words.slice(i).join(' ')];
-      cur = t;
-    }
-    return [cur, ''];
-  }
-  function plain(field) {
-    // A box with no border colour (or an empty one, which means "none") should
-    // print without an outline, but pdf-lib strokes it in black whenever the
-    // box has a background and a border width. Zero the width for those boxes.
-    var N = PDFLib.PDFName;
-    field.acroField.getWidgets().forEach(function (w) {
-      try {
-        var mk = w.dict.lookup(N.of('MK'));
-        var bc = mk && mk.get ? mk.lookup(N.of('BC')) : null;
-        var none = !bc || (bc.size && bc.size() === 0);
-        if (!none) return;
-        if (mk && mk.delete) mk.delete(N.of('BC'));
-        var bs = w.dict.lookup(N.of('BS'));
-        if (bs && bs.set) bs.set(N.of('W'), PDFLib.PDFNumber.of(0));
-      } catch (e) {}
-    });
-  }
-  function setText(field, text, font) {
-    plain(field);
-    var f = fit(field, text, font);
-    if (f) {
-      if (f.multi) { try { field.enableMultiline(); } catch (e) {} }
-      try { field.setFontSize(f.size); } catch (e) {}
-    }
-    field.setText(text);
-    return f && f.over ? 'over' : (f && f.small ? 'small' : '');
-  }
-  // TPN/Enteral hang marital status off the IV-access radio group, which can
-  // only hold one value, so marital status is drawn on as a pen mark would be.
-  function markWidget(doc, obj, state) {
-    var kids = obj.acroField.getWidgets(), pages = doc.getPages();
-    for (var i = 0; i < kids.length; i++) {
-      var w = kids[i];
-      var ap = w.dict.lookup(PDFLib.PDFName.of('AP'));
-      var n = ap && ap.lookup(PDFLib.PDFName.of('N'));
-      if (!n || !n.keys) continue;
-      var has = n.keys().some(function (k) { return k.asString() === '/' + state; });
-      if (!has) continue;
-      var r = w.getRectangle(), pg = pages[0];
-      for (var k = 0; k < pages.length; k++) if (pages[k].ref === w.P()) pg = pages[k];
-      var s = Math.min(r.width, r.height) * 0.7, cx = r.x + r.width / 2, cy = r.y + r.height / 2;
-      var ink = { thickness: 1.1, color: PDFLib.rgb(0, 0, 0) };
-      pg.drawLine(Object.assign({ start: { x: cx - s / 2, y: cy - s / 2 }, end: { x: cx + s / 2, y: cy + s / 2 } }, ink));
-      pg.drawLine(Object.assign({ start: { x: cx - s / 2, y: cy + s / 2 }, end: { x: cx + s / 2, y: cy - s / 2 } }, ink));
-      return true;
-    }
-    return false;
-  }
-  // Text for blanks that have no field of their own (rect is [page, x0, top, x1, bottom]).
-  function drawIn(doc, font, r, text) {
-    var page = doc.getPages()[r[0]], H = page.getHeight();
-    var w = r[3] - r[1] - 3, h = r[4] - r[2];
-    var s = Math.max(5, Math.min(9, h * 0.72));
-    while (s > 4.5 && font.widthOfTextAtSize(text, s) > w) s -= 0.25;
-    page.drawText(text, { x: r[1] + 1.5, y: H - r[4] + (h - s * 0.7) / 2, size: s, font: font, color: PDFLib.rgb(0, 0, 0) });
-    return font.widthOfTextAtSize(text, s) > w ? 'over' : '';
-  }
-  function ring(doc, r) {
-    var page = doc.getPages()[r[0]], H = page.getHeight();
-    page.drawEllipse({ x: (r[1] + r[3]) / 2, y: H - (r[2] + r[4]) / 2,
-                       xScale: (r[3] - r[1]) / 2 + 3, yScale: (r[4] - r[2]) / 2 + 2,
-                       borderColor: PDFLib.rgb(0, 0, 0), borderWidth: 0.9 });
-  }
-
-  function download() {
-    var btn = $('go');
-    btn.disabled = true;
-    msg('Making the PDF…', 'info');
-    var acc = newAcc();
-    form.steps.forEach(function (s) { collect(s.items, acc, ''); });
-    var broken = [], over = [], small = [];
-    function note(how, label) { if (how === 'over') over.push(label); else if (how === 'small') small.push(label); }
-
-    fetch('./pdfs/' + form.file).then(function (r) {
-      if (!r.ok) throw new Error('Could not load the blank form (HTTP ' + r.status + ')');
-      return r.arrayBuffer();
-    }).then(function (b) {
-      return PDFLib.PDFDocument.load(b);
-    }).then(function (doc) {
-      return doc.embedFont(PDFLib.StandardFonts.Helvetica).then(function (font) {
-        var pdfForm = doc.getForm(), idx = {};
-        pdfForm.getFields().forEach(function (o) { idx[o.getName()] = o; });
-
-        function put(name, text, label, more) {
-          var names = [name].concat(more || []), rest = text;
-          for (var i = 0; i < names.length && rest; i++) {
-            var fobj = idx[names[i]];
-            if (!fobj) { broken.push(label); return; }
-            if (i < names.length - 1) {
-              var parts = splitFor(fobj, rest, font);
-              setText(fobj, parts[0], font);
-              rest = parts[1];
-            } else { note(setText(fobj, rest, font), label); rest = ''; }
-          }
-        }
-
-        Object.keys(form.auto).forEach(function (f) {
-          var v = PHARMACY[form.auto[f]];
-          if (v) { try { put(f, v, 'Pharmacy ' + form.auto[f]); } catch (e) { broken.push('Pharmacy ' + form.auto[f]); } }
-        });
-        acc.text.forEach(function (w) { try { put(w.f, w.t, w.l, w.more); } catch (e) { broken.push(w.l); } });
-        acc.checks.forEach(function (f) { try { idx[f].check(); } catch (e) { broken.push(f); } });
-        acc.radios.forEach(function (r) {
-          try { idx[r.f].acroField.setValue(PDFLib.PDFName.of(r.v)); } catch (e) { broken.push(r.f); }
-        });
-        acc.marks.forEach(function (m) { if (!idx[m.f] || !markWidget(doc, idx[m.f], m.v)) broken.push(m.f); });
-        acc.draws.forEach(function (d) { note(drawIn(doc, font, d.r, d.t), d.l); });
-        acc.rings.forEach(function (r) { ring(doc, r); });
-
-        // Flatten so every viewer and printer shows the same thing.
-        pdfForm.flatten();
-        return doc.save();
-      });
-    }).then(function (bytes) {
-      var url = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
-      var a = el('a');
-      a.href = url;
-      a.download = form.code + '-referral-' + isoToday() + '.pdf';
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
-
-      var box = el('div');
-      var strong = el('strong', null, 'Downloaded. ');
-      box.appendChild(strong);
-      box.appendChild(document.createTextNode('Print it, have the prescriber sign and date it by hand, and fax it with the attachments to ' + FAX + '.'));
-      function list(title, items, tail) {
-        if (!items.length) return;
-        box.appendChild(el('br'));
-        box.appendChild(el('strong', null, title + ' '));
-        box.appendChild(document.createTextNode(items.slice(0, 8).join(', ') + (tail ? ' ' + tail : '')));
-      }
-      list('Could not write:', broken);
-      list('Printed small to fit:', small, '(readable, but shorter wording prints larger).');
-      list('Too long to print in full:', over, '(shorten these and download again).');
-      msg(box, broken.length || over.length ? 'warn' : 'success');
-      btn.disabled = false;
-    }).catch(function (err) {
-      console.error(err);
-      msg('Something went wrong making the PDF: ' + err.message, 'error');
-      btn.disabled = false;
-    });
-  }
-
-  // ---------- start ----------
-  function fail(text) {
-    // the loader has already swapped the "Loading…" line for the empty card
-    if ($('messages')) msg(text, 'error');
-  }
-
-  window.VCReferral = {
-    start: function () {
-      if (typeof PDFLib === 'undefined') { window.VCReferral.fail(); return; }
-      fetch('./forms.json').then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      }).then(function (d) {
-        DATA = d;
-        buildSteps(); renderSteps(); renderPanels();
-      }).catch(function (e) {
-        console.error(e);
-        msg('The referral forms could not be loaded. Please refresh the page, or call (513) 780-5880.', 'error');
-      });
-    },
-    fail: function () {
-      fail('The online referral could not load in this browser. You can still fax a referral to ' + FAX +
-           ' or call (513) 780-5880.');
-    },
-    // read-only view of what would be written; used by the automated checks
-    peek: function () {
-      var acc = newAcc();
-      if (form) form.steps.forEach(function (s) { collect(s.items, acc, ''); });
-      return acc;
-    }
-  };
-})();
-</script>
-  <script>
-  /* Pulls in pdf-lib and the form definitions the first time someone actually
-     reaches the referral section, so everyone else never downloads them. */
-  (function () {
-    var sec  = document.getElementById('online-referral');
-    var root = document.getElementById('vcr');
-    if (!sec || !root) return;
-    var started = false;
-
-    function reveal() {
-      var l = root.querySelector('.vcr-loading');
-      if (l && l.parentNode) l.parentNode.removeChild(l);
-      var c = root.querySelector('.card');
-      if (c) c.hidden = false;
-    }
-    function start() {
-      if (started) return;
-      started = true;
-      var s = document.createElement('script');
-      s.src = './pdf-lib.min.js';
-      s.onload  = function () { reveal(); window.VCReferral.start(); };
-      s.onerror = function () { reveal(); window.VCReferral.fail(); };
-      document.head.appendChild(s);
-    }
-
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        for (var i = 0; i < entries.length; i++) {
-          if (entries[i].isIntersecting) { io.disconnect(); start(); return; }
-        }
-      }, { rootMargin: '700px' });
-      io.observe(sec);
-    } else {
-      start();
-    }
-
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest && e.target.closest('a[href="#online-referral"]');
-      if (a) start();
-    });
-  })();
   </script>
 
 </body>

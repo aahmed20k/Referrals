@@ -1,0 +1,67 @@
+/* Additions shared by all pages. Uses the colour tokens defined in each page. */
+[hidden] { display: none !important; }
+
+/* Why Vital Care */
+.why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 56px; }
+.why-item h3 { margin-bottom: 8px; }
+.why-item p { color: var(--muted); font-size: 1rem; }
+.why-n { width: 44px; height: 44px; border-radius: 50%; background: #e8f6fc; color: var(--blue-ink);
+         display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.why-n svg { width: 22px; height: 22px; }
+
+/* About */
+.about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 72px; align-items: start; }
+.about-grid h2 { margin-bottom: 20px; }
+.about-grid .lead + .lead { margin-top: 16px; }
+.fact { padding: 20px 0; border-top: 1px solid var(--line); }
+.fact:last-child { border-bottom: 1px solid var(--line); }
+.fact h3 { font-size: 1.05rem; margin-bottom: 4px; }
+.fact p { color: var(--muted); font-size: 1rem; }
+.badge { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding: 9px 16px;
+         border-radius: 999px; background: #e8f6fc; color: var(--navy); font-size: .9rem; font-weight: 600; }
+.badge svg { width: 18px; height: 18px; color: var(--blue-ink); }
+
+/* Small notes under contact details */
+.contact dd .sub { display: block; font-weight: 400; color: var(--muted); font-size: 1rem; }
+.contact .gbp { display: inline-block; margin-bottom: 24px; }
+
+/* Providers: rep card */
+.rep { display: grid; grid-template-columns: auto 1fr auto; gap: 28px; align-items: center;
+       padding: 32px 36px; border-radius: 28px; background: var(--gray); }
+.rep-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--navy); color: var(--white);
+              display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 600; letter-spacing: .02em; }
+.rep h3 { margin-bottom: 2px; }
+.rep .role { color: var(--muted); font-size: .98rem; margin-bottom: 10px; }
+.rep-lines { display: flex; flex-wrap: wrap; gap: 6px 24px; font-size: 1rem; }
+.rep-lines a { color: var(--blue-ink); font-weight: 500; }
+.rep-lines a:hover { text-decoration: underline; }
+.rep-note { color: var(--muted); font-size: .92rem; margin-top: 18px; }
+.inservice { margin-top: 28px; color: var(--muted); }
+.inservice a { color: var(--blue-ink); font-weight: 500; }
+
+/* Providers: blank forms */
+.form-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 48px; margin-top: 48px; }
+.form-link { display: flex; justify-content: space-between; align-items: center; gap: 16px;
+             padding: 18px 0; border-top: 1px solid var(--line); color: var(--text); font-weight: 500; }
+.form-link:hover { color: var(--blue-ink); }
+.form-link span { color: var(--muted); font-size: .85rem; font-weight: 400; white-space: nowrap; }
+.form-note { color: var(--muted); font-size: .95rem; margin-top: 28px; max-width: 720px; }
+
+.status-note { margin-top: 40px; padding: 22px 26px; border-radius: 18px; background: var(--gray); color: var(--muted); max-width: 760px; }
+.status-note strong { color: var(--text); font-weight: 600; }
+.status-note a { color: var(--blue-ink); font-weight: 500; }
+
+@media (max-width: 900px) {
+  .why-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .form-grid { grid-template-columns: 1fr 1fr; }
+  .rep { grid-template-columns: auto 1fr; }
+  .rep .btn { grid-column: 1 / -1; justify-self: start; }
+}
+@media (max-width: 560px) {
+  .why-grid, .form-grid { grid-template-columns: 1fr; }
+  .rep { grid-template-columns: 1fr; padding: 28px; }
+}
+
+/* notes sitting on a grey section get a white card */
+.services .status-note { background: var(--white); }
